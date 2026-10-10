@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#080B0F">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Fórmula Auto Pro Essencial">
+<title>Fórmula Auto Pro Essencial</title>
+<meta name="description" content="80+ fórmulas automotivas profissionais — o guia completo para produzir e vender.">
+<link rel="manifest" href="manifest.json">
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','991715813570421');
+// Apenas ViewContent e InitiateCheckout são disparados neste app — nunca Purchase.
+</script>
+<style>
+:root{--bg:#080B0F;--bg2:#0E1117;--card:#111418;--ch:#181D24;--brd:#1E2530;--acc:#E8720C;--acl:#FFB347;--acd:#C4580A;--glo:rgba(232,114,12,0.15);--txt:#F2F4F6;--mut:#8B95A1;--dim:#4A5568;--grn:#22C55E;--blu:#3B82F6;--r:12px;--rl:18px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;direction:ltr;}
+/* SPLASH */
+#splash{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;}
+.sp-logo{font-size:34px;font-weight:800;letter-spacing:-1px;background:linear-gradient(135deg,#E8720C,#FFB347);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:fu .8s ease forwards;}
+.sp-sub{font-size:12px;color:var(--mut);letter-spacing:2px;text-transform:uppercase;animation:fu .8s .2s ease both;text-align:center;padding:0 32px;line-height:1.6;}
+.sp-bar{width:120px;height:3px;background:var(--brd);border-radius:2px;overflow:hidden;animation:fu .8s .4s ease both;}
+.sp-p{height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--acl));animation:lb 1.8s .5s ease forwards;}
+@keyframes lb{to{width:100%;}}@keyframes fu{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fi{from{opacity:0;}to{opacity:1;}}@keyframes su{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+/* APP */
+#app{display:flex;flex-direction:column;min-height:100vh;}
+/* HEADER */
+#hdr{position:sticky;top:0;z-index:100;background:rgba(8,11,15,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--brd);padding:12px 16px;display:flex;align-items:center;gap:10px;}
+.hdr-logo{font-size:16px;font-weight:800;background:linear-gradient(135deg,var(--acc),var(--acl));-webkit-background-clip:text;-webkit-text-fill-color:transparent;cursor:pointer;flex-shrink:0;}
+.hdr-search{flex:1;position:relative;}
+.hdr-search input{width:100%;background:var(--card);border:1px solid var(--brd);border-radius:8px;padding:8px 12px 8px 32px;color:var(--txt);font-size:14px;outline:none;transition:border-color .2s;cursor:pointer;direction:ltr;text-align:left;}
+.hdr-search input:focus{border-color:var(--acc);}
+.hdr-search input::placeholder{color:var(--dim);}
+.si{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--dim);font-size:13px;pointer-events:none;}
+.hdr-acts{display:flex;gap:6px;flex-shrink:0;}
+.ib{width:34px;height:34px;border-radius:8px;background:var(--card);border:1px solid var(--brd);color:var(--mut);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all .2s;}
+.ib:hover{background:var(--ch);color:var(--acc);border-color:var(--acc);}
+/* MAIN */
+#main{flex:1;padding-bottom:80px;}
+/* BOTTOM NAV */
+#nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(8,11,15,.96);backdrop-filter:blur(16px);border-top:1px solid var(--brd);display:flex;padding:8px 0 max(8px,env(safe-area-inset-bottom));}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:6px 4px;color:var(--dim);font-size:10px;transition:color .2s;border:none;background:none;text-decoration:none;letter-spacing:.3px;}
+.ni .ico{font-size:18px;line-height:1;}
+.ni.on{color:var(--acc);}
+/* PROGRESS */
+.pb{height:2px;background:var(--brd);}
+.pf{height:100%;background:linear-gradient(90deg,var(--acc),var(--acl));transition:width .3s;}
+/* HOME */
+.wb{margin:16px;padding:18px;background:linear-gradient(135deg,var(--card),rgba(232,114,12,.06));border:1px solid var(--brd);border-left:3px solid var(--acc);border-radius:var(--rl);}
+.wg{font-size:10px;color:var(--acc);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+.wt{font-size:18px;font-weight:800;margin-bottom:6px;}
+.wx{font-size:13px;color:var(--mut);line-height:1.6;}
+.sl{padding:0 16px;margin:18px 0 10px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mut);display:flex;align-items:center;gap:8px;}
+.sl::after{content:'';flex:1;height:1px;background:var(--brd);}
+/* PRODUCT CARDS (home) */
+.pg{display:flex;flex-direction:column;gap:10px;padding:0 16px;}
+.pc{background:var(--card);border:1px solid var(--brd);border-radius:var(--rl);padding:16px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;display:flex;align-items:center;gap:14px;}
+.pc::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--glo),transparent 60%);opacity:0;transition:opacity .25s;}
+.pc:hover{border-color:var(--acc);transform:translateY(-1px);box-shadow:0 0 24px var(--glo);}
+.pc:hover::before{opacity:1;}
+.pc.lk{opacity:.85;}
+.pc.lk:hover{transform:none;border-color:var(--brd);}
+.pc-icon{font-size:32px;flex-shrink:0;}
+.pc-body{flex:1;min-width:0;}
+.pc-name{font-size:15px;font-weight:700;margin-bottom:3px;}
+.pc-sub{font-size:12px;color:var(--mut);line-height:1.4;}
+.pc-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;flex-shrink:0;}
+.pc-badge.inc{background:var(--acc);color:#fff;}
+.pc-badge.lk2{background:var(--glo);color:var(--acl);border:1px solid var(--acc);animation:pulse 2.2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(232,114,12,.35);}50%{box-shadow:0 0 0 4px rgba(232,114,12,0);}}
+.pc-hint{color:var(--acl);font-size:10.5px;font-weight:700;margin-top:6px;}
+.pc-badge.unl{background:rgba(34,197,94,.2);color:var(--grn);border:1px solid rgba(34,197,94,.3);}
+/* UTILITY CARDS */
+.ug{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px;}
+.uc{background:var(--card);border:1px solid var(--brd);border-radius:var(--r);padding:14px;cursor:pointer;transition:all .2s;text-decoration:none;color:inherit;display:block;}
+.uc:hover{border-color:var(--acc);transform:translateY(-1px);}
+.uc-icon{font-size:24px;margin-bottom:8px;}
+.uc-name{font-size:13px;font-weight:700;margin-bottom:3px;}
+.uc-sub{font-size:11px;color:var(--mut);}
+/* BONUS */
+.bg{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px;}
+.bc{background:var(--card);border:1px solid var(--brd);border-radius:var(--r);padding:12px;text-decoration:none;color:inherit;display:block;transition:all .2s;}
+.bc:hover{border-color:var(--acl);transform:translateY(-1px);}
+.bic{font-size:20px;margin-bottom:6px;}
+.bn{font-size:12px;font-weight:700;margin-bottom:3px;line-height:1.3;}
+.bd{font-size:11px;color:var(--mut);line-height:1.4;}
+.bl{display:inline-block;margin-top:6px;font-size:10px;font-weight:700;color:var(--acc);letter-spacing:.5px;text-transform:uppercase;}
+/* SUB-APP HEADER */
+.sah{padding:14px 16px;border-bottom:1px solid var(--brd);display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;background:rgba(8,11,15,.95);backdrop-filter:blur(12px);}
+.bb{width:34px;height:34px;border-radius:8px;background:var(--card);border:1px solid var(--brd);color:var(--txt);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;flex-shrink:0;transition:all .2s;}
+.bb:hover{border-color:var(--acc);}
+.sat{flex:1;}
+.sat-icon{font-size:18px;}
+.sat-name{font-size:16px;font-weight:700;}
+.sat-sub{font-size:11px;color:var(--mut);margin-top:1px;}
+/* DOWNLOAD BUTTON */
+.dl-wrap{padding:12px 16px;}
+.dl-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--card);border:1px solid var(--brd);color:var(--txt);padding:12px;border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;width:100%;}
+.dl-btn:hover{border-color:var(--acc);color:var(--acc);}
+/* CATEGORY CARDS (inside sub-app) */
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px;}
+.cc{background:var(--card);border:1px solid var(--brd);border-radius:var(--rl);padding:16px 13px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;text-decoration:none;color:inherit;display:block;}
+.cc::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--glo),transparent 60%);opacity:0;transition:opacity .25s;}
+.cc:hover{border-color:var(--acc);transform:translateY(-2px);}
+.cc:hover::before{opacity:1;}
+.ci{font-size:24px;margin-bottom:8px;display:block;}
+.cn{font-size:13px;font-weight:700;margin-bottom:3px;line-height:1.3;}
+.ck{font-size:11px;color:var(--mut);}
+/* FORMULA LIST */
+.fl{padding:8px 16px;}
+.fi{background:var(--card);border:1px solid var(--brd);border-radius:var(--r);padding:14px;margin-bottom:8px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:12px;}
+.fi:hover{border-color:var(--acc);background:var(--ch);}
+.fi.sv{border-left:3px solid var(--acc);}
+.fi.vd{border-left:3px solid var(--grn);}
+.fi.lk{opacity:.68;}
+/* PREVIEW MODE */
+.prevbar{margin:12px 16px 0;padding:12px 14px;background:linear-gradient(135deg,var(--acc),var(--acd));border-radius:var(--r);display:flex;align-items:center;gap:10px;box-shadow:0 4px 18px rgba(232,114,12,.3);}
+.prevbar-tx{flex:1;font-size:12px;font-weight:700;line-height:1.4;color:#fff;}
+.prevbar-cta{background:#fff;color:var(--acd);padding:8px 14px;border-radius:20px;font-size:11px;font-weight:800;text-decoration:none;white-space:nowrap;flex-shrink:0;}
+.fic{flex:1;min-width:0;}
+.fit{font-size:14px;font-weight:600;margin-bottom:4px;}
+.fid{font-size:12px;color:var(--mut);line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+.far{color:var(--dim);font-size:20px;flex-shrink:0;}
+/* FORMULA DETAIL */
+.fh{padding:18px 16px;border-bottom:1px solid var(--brd);background:linear-gradient(135deg,var(--card),rgba(232,114,12,.04));}
+.ftm{font-size:20px;font-weight:800;line-height:1.2;margin-bottom:6px;}
+.fdm{font-size:13px;color:var(--mut);line-height:1.6;}
+.fav-btn{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--brd);color:var(--mut);font-size:12px;font-weight:600;padding:8px 14px;border-radius:8px;cursor:pointer;transition:all .2s;margin-top:12px;}
+.fav-btn.on{color:var(--acc);border-color:var(--acc);background:var(--glo);}
+/* DETAIL SECTIONS */
+.sb{padding:16px;border-bottom:1px solid var(--brd);}
+.sb:last-child{border-bottom:none;}
+.bt{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--acc);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.bt::after{content:'';flex:1;height:1px;background:rgba(232,114,12,.2);}
+.ul2{display:flex;flex-wrap:wrap;gap:6px;}
+.ut2{background:var(--card);border:1px solid var(--brd);color:var(--mut);font-size:11px;padding:4px 9px;border-radius:6px;}
+table.ft,table.dt{width:100%;border-collapse:collapse;}
+table.ft th,table.dt th{background:var(--bg2);color:var(--mut);font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:7px 10px;text-align:left;border-bottom:1px solid var(--brd);}
+table.ft td,table.dt td{padding:8px 10px;font-size:12px;border-bottom:1px solid var(--brd);vertical-align:top;}
+table.ft tr:last-child td,table.dt tr:last-child td{border-bottom:none;}
+table.ft tr:hover td,table.dt tr:hover td{background:var(--ch);}
+table.ft td:last-child{color:var(--acl);font-weight:700;font-family:'Courier New',monospace;text-align:right;white-space:nowrap;}
+.dr{font-family:'Courier New',monospace;font-weight:700;color:var(--acc);font-size:13px;}
+.de{color:var(--mut);font-size:11px;}
+.ifl{display:flex;flex-direction:column;gap:9px;}
+.ifi{display:flex;gap:10px;}
+.ifn{font-size:11px;font-weight:700;color:var(--acl);flex-shrink:0;min-width:120px;}
+.ifd{font-size:12px;color:var(--mut);line-height:1.5;}
+.pl{display:flex;flex-direction:column;gap:10px;}
+.ps{display:flex;gap:10px;align-items:flex-start;}
+.pn{width:24px;height:24px;border-radius:50%;background:var(--acc);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ptx{font-size:13px;line-height:1.6;padding-top:2px;}
+.wl{display:flex;flex-direction:column;gap:7px;}
+.wi{display:flex;gap:9px;align-items:flex-start;background:var(--card);border-radius:8px;padding:9px 10px;border:1px solid var(--brd);}
+.wic{font-size:13px;flex-shrink:0;}
+.wtx{font-size:12px;color:var(--mut);line-height:1.5;}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.ip{background:var(--card);border:1px solid var(--brd);border-radius:8px;padding:10px;}
+.ipl{font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--dim);margin-bottom:4px;}
+.ipv{font-size:12px;line-height:1.4;}
+.sales{background:linear-gradient(135deg,var(--glo),transparent);border:1px solid rgba(232,114,12,.3);border-radius:var(--r);padding:13px;}
+.sq{font-size:13px;font-weight:600;line-height:1.5;font-style:italic;margin-bottom:6px;}
+.cn2{font-size:11px;color:var(--mut);line-height:1.5;}
+/* LEGALIZAÇÃO */
+.lg-card{background:var(--card);border:1px solid var(--brd);border-radius:var(--r);padding:15px;margin-bottom:8px;cursor:pointer;transition:all .2s;display:flex;align-items:flex-start;gap:12px;}
+.lg-card:hover{border-color:var(--blu);background:var(--ch);}
+.lg-num{width:28px;height:28px;border-radius:50%;background:var(--blu);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.lg-body{flex:1;}
+.lg-title{font-size:14px;font-weight:700;margin-bottom:3px;}
+.lg-sub{font-size:12px;color:var(--mut);line-height:1.4;}
+/* EXCLUSIVA */
+.ex-box{margin:16px;padding:20px;background:linear-gradient(135deg,rgba(139,92,246,.12),rgba(139,92,246,.04));border:1px solid rgba(139,92,246,.3);border-radius:var(--rl);}
+.ex-step{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start;}
+.ex-num{width:28px;height:28px;border-radius:50%;background:rgba(139,92,246,.8);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ex-txt{font-size:13px;line-height:1.6;padding-top:4px;}
+.ex-msg{background:var(--card);border:1px solid var(--brd);border-radius:var(--r);padding:14px;margin:0 16px 14px;font-size:13px;line-height:1.7;color:var(--mut);}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#fff;padding:14px;border-radius:var(--r);font-size:15px;font-weight:700;text-decoration:none;margin:0 16px;transition:opacity .2s;}
+.wa-btn:hover{opacity:.9;}
+/* SEARCH */
+#search-wrap{padding:14px 16px;border-bottom:1px solid var(--brd);}
+#search-inp{width:100%;background:var(--card);border:1px solid var(--acc);border-radius:8px;padding:12px 14px 12px 36px;color:var(--txt);font-size:15px;outline:none;direction:ltr;text-align:left;unicode-bidi:embed;}
+#search-icon{position:absolute;left:26px;top:50%;transform:translateY(-50%);color:var(--mut);pointer-events:none;}
+#search-results{min-height:200px;animation:fi .2s ease;}
+/* GLOSSARY */
+.gs{padding:12px 16px;background:var(--bg);border-bottom:1px solid var(--brd);}
+.gs input{width:100%;background:var(--card);border:1px solid var(--brd);border-radius:8px;padding:10px 13px;color:var(--txt);font-size:14px;outline:none;direction:ltr;}
+.gs input:focus{border-color:var(--acc);}
+.gw{overflow-x:auto;}
+table.gt{width:100%;border-collapse:collapse;min-width:560px;}
+table.gt th{background:var(--bg2);color:var(--mut);font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:7px 10px;text-align:left;border-bottom:1px solid var(--brd);}
+table.gt td{padding:8px 10px;font-size:11px;border-bottom:1px solid var(--brd);vertical-align:top;}
+table.gt tr:hover td{background:var(--ch);}
+.gn{font-weight:700;color:var(--txt);font-size:12px;}
+.gm{color:var(--mut);}
+.gp{color:var(--acl);font-weight:600;white-space:nowrap;}
+/* SUPPLIERS */
+.sr{padding:10px 16px 4px;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--acc);}
+.sc{margin:0 16px 7px;background:var(--card);border:1px solid var(--brd);border-radius:var(--r);padding:12px;}
+.sn{font-size:13px;font-weight:700;margin-bottom:2px;}
+.sct{font-size:11px;color:var(--mut);margin-bottom:3px;}
+.sco{font-size:11px;color:var(--mut);}
+/* EMPTY */
+.es{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 32px;text-align:center;}
+.ei{font-size:44px;margin-bottom:12px;opacity:.5;}
+.et{font-size:17px;font-weight:700;margin-bottom:6px;}
+.ex2{font-size:13px;color:var(--mut);line-height:1.5;}
+/* WA FLOAT BTN */
+.wa-float{position:fixed;bottom:88px;right:14px;z-index:200;width:48px;height:48px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,.4);transition:transform .2s;}
+.wa-float:hover{transform:scale(1.08);}
+/* INSTALL */
+#ip{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:20px;}
+#ip.open{display:flex;}
+.ip-box{background:var(--card);border:2px solid var(--acc);border-radius:var(--rl);padding:22px 18px;width:100%;max-width:440px;animation:su .3s ease;box-shadow:0 0 50px var(--glo);}
+.ip-title{font-size:16px;font-weight:800;margin-bottom:5px;text-align:center;}
+.ip-sub{font-size:12px;color:var(--mut);text-align:center;margin-bottom:18px;}
+.ip-tabs{display:flex;gap:8px;margin-bottom:14px;}
+.ip-tab{flex:1;padding:8px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid var(--brd);background:var(--bg2);color:var(--mut);text-align:center;transition:all .2s;}
+.ip-tab.on{background:var(--acc);color:#fff;border-color:var(--acc);}
+.ip-steps{display:flex;flex-direction:column;gap:9px;margin-bottom:16px;}
+.ip-step{display:flex;gap:10px;align-items:flex-start;}
+.ip-n{width:22px;height:22px;border-radius:50%;background:var(--acc);color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ip-t{font-size:12px;line-height:1.5;padding-top:3px;}
+.ip-close{width:100%;padding:11px;background:var(--bg2);border:1px solid var(--brd);border-radius:8px;color:var(--mut);font-size:13px;font-weight:600;cursor:pointer;}
+/* PRINT */
+@media print{body{background:#fff;color:#000;}#hdr,#nav,.wa-float,#ip,.fav-btn{display:none!important;}.ftm,.bt{color:#E8720C;}.pn{background:#E8720C;}}
+/* RESPONSIVE */
+@media(min-width:768px){.cg{grid-template-columns:repeat(3,1fr);}#main{max-width:768px;margin:0 auto;}.wa-float{bottom:22px;right:22px;}#nav{display:none;}}
+</style>
+</head>
+<body>
+
+<div id="splash">
+  <div class="sp-logo">⚡ Fórmula Auto Pro Essencial</div>
+  <div class="sp-sub">O Guia que as Empresas Guardam a 7 Chaves.</div>
+  <div class="sp-bar"><div class="sp-p"></div></div>
+</div>
+
+<div id="app" hidden>
+  <div id="hdr">
+    <div class="hdr-logo" id="hdr-logo">⚡ FAP</div>
+    <div class="hdr-search" style="position:relative">
+      <span class="si">🔍</span>
+      <input type="text" readonly id="hdr-s-btn" onclick="go('search')"
+        placeholder="Buscar fórmulas..." style="cursor:pointer;direction:ltr">
+    </div>
+    <div class="hdr-acts">
+      <button class="ib" id="hdr-inst-btn" title="Instalar">📲</button>
+      <button class="ib" id="hdr-f-btn" title="Favoritos">♡</button>
+    </div>
+  </div>
+  <div class="pb"><div class="pf" id="pf" style="width:0%"></div></div>
+  <div id="main"></div>
+  <nav id="nav">
+    <button class="ni on" data-v="home"><span class="ico">🏠</span>Início</button>
+    <button class="ni" data-v="search"><span class="ico">🔍</span>Buscar</button>
+    <button class="ni" data-v="favs"><span class="ico">♡</span>Salvos</button>
+    <button class="ni" data-v="gloss"><span class="ico">📚</span>Glossário</button>
+    <a class="ni" href="https://wa.me/558131963052" target="_blank"><span class="ico">💬</span>Suporte</a>
+  </nav>
+</div>
+
+<a href="https://wa.me/558131963052" target="_blank" class="wa-float" title="WhatsApp">💬</a>
+
+<div id="ip" onclick="if(event.target===this)closeInst()">
+  <div class="ip-box" id="ip-box"></div>
+</div>
+
+<script>
+let AF=[{"id": "f001", "cat": "limpeza-externa", "catName": "Limpeza Externa", "catIcon": "🧴", "title": "Shampoo Automotivo Neutro", "desc": "Produto para lavagem externa de carros, motos e veículos leves. Remove poeira e sujeira do dia a dia sem agredir a pintura. O shampoo de maior volume de venda da linha automotiva.", "uses": ["Pintura de carros e motos", "Rodas com sujeira leve", "Para-choques externos", "Lava-rápidos", "Manutenção regular"], "formula": [["Água filtrada/deionizada", "78 L"], ["Lauril éter sulfato 27%", "15 L"], ["Cocoamidopropil betaína", "4 L"], ["Amida 60", "2 L"], ["Conservante", "200 ml"], ["Fragrância", "500 ml"], ["Corante", "q.s."], ["Cloreto de sódio", "até 1 kg"], ["Água p/ completar", "até 100 L"]], "ingFunc": [["Lauril éter sulfato", "Principal agente de limpeza e espuma"], ["Betaína", "Suaviza, melhora cremosidade e protege a pintura"], ["Amida 60", "Estabiliza a espuma e ajuda na viscosidade"], ["Cloreto de sódio", "Ajusta viscosidade — acima de 1,5% o efeito se inverte"]], "prep": ["Adicione 68 L de água no tanque", "Acrescente o lauril aos poucos, devagar", "Adicione a betaína e misture", "Acrescente a amida 60", "Adicione conservante e fragrância", "Coloque o corante até a cor desejada", "Ajuste a viscosidade com cloreto dissolvido em água", "Complete com água até 100 L", "Misture lentamente e deixe descansar 4 a 8 h", "Verifique pH e viscosidade antes de envasar"], "dil": [["Sujeira leve", "1:50", "100 ml em 5 L"], ["Lavagem comum", "1:25", "200 ml em 5 L"], ["Canhão de espuma", "1:10", "500 ml em 5 L"]], "app": "Molhar o veículo, preparar a diluição, aplicar com esponja ou luva macia de cima para baixo, enxaguar completamente e secar com microfibra.", "caut": ["Não aplicar sob sol forte ou pintura quente", "Não deixar secar — cria manchas difíceis", "Evitar uso puro — dificulta o enxágue", "Não usar esponja áspera — risco de microriscos"], "err": ["Cloreto de sódio demais — produto fica ralo", "Misturar lauril rápido demais — espuma excessiva", "Fragrância em excesso — desestabiliza a emulsão", "Envasar com espuma sem deixar descansar"], "frag": "Citrus, marine, carro novo, cereja, limão", "cor": "Azul (marine), verde (limão), amarelo claro (citrus)", "emb": "1 L, 2 L, 5 L, 20 L", "venda": "Shampoo neutro de alto rendimento — espuma cremosa, limpeza segura para a pintura e ótimo custo por lavagem.", "custo": "Baixíssimo custo de produção e altíssimo volume de venda. Margem excelente em galão de 20 L."}, {"id": "f002", "cat": "limpeza-externa", "catName": "Limpeza Externa", "catIcon": "🧴", "title": "Shampoo com Cera", "desc": "Produto para lavar e deixar brilho leve na pintura em uma única etapa. Entrega manutenção de brilho sem precisar de enceramento separado.", "uses": ["Carros de passeio conservados", "Motos", "Manutenção de brilho", "Cliente que busca praticidade"], "ingFunc": [["Emulsão cera carnaúba", "Brilho natural, toque liso e proteção leve — diferencial"], ["Silicone emulsionado", "Intensifica o brilho e melhora o deslizamento"]]}, {"id": "f003", "cat": "limpeza-externa", "catName": "Limpeza Externa", "catIcon": "🧴", "title": "Snow Foam — Espuma Ativa", "desc": "Produto para gerar espuma densa em canhão de snow foam. A espuma cobre o veículo, age por contato e solta a sujeira antes da lavagem principal.", "uses": ["Pré-lavagem com canhão de espuma", "Estética automotiva profissional", "Pintura com sujeira moderada"], "formula": [["Água filtrada/deionizada", "67 L"], ["Lauril éter sulfato 27%", "20 L"], ["Cocoamidopropil betaína", "5 L"], ["Amida 60", "4 L"], ["Ácido sulfônico neutralizado", "2 L"], ["Espessante compatível", "até 1 kg"], ["Conservante", "200 ml"], ["Fragrância", "500 ml"], ["Corante", "q.s."], ["Água p/ completar", "até 100 L"]], "ingFunc": [["Lauril maior concentração", "Espuma abundante — diferencial desta fórmula"], ["Betaína maior proporção", "Cremosidade e estabilidade da espuma"], ["Amida 60 maior", "Consistência — espuma gruda no veículo e age por mais tempo"]], "prep": ["Adicione 58 L de água", "Coloque o lauril aos poucos — gera muita espuma, misturar devagar", "Adicione a betaína com cuidado", "Acrescente a amida 60", "Adicione o ácido sulfônico neutralizado", "Ajuste viscosidade com espessante", "Acrescente conservante, fragrância e corante", "Complete até 100 L", "Misturar MUITO lentamente", "Deixar descansar 8 a 12 h antes de envasar"], "dil": [["Canhão snow foam", "1:10", "500 ml em 5 L"], ["Espuma mais densa", "1:5", "1 L em 5 L"]], "app": "Diluir no reservatório do snow foam, aplicar sobre o veículo, deixar agir 3 a 5 minutos e enxaguar.", "caut": ["Não deixar a espuma secar", "Não aplicar em pintura quente"], "err": ["Espuma densa não é limpeza mais forte — é contato prolongado", "Espessante demais — produto não sai bem pelo canhão"], "frag": "Citrus, bubble gum, marine, cereja", "cor": "Rosa, azul, verde — cores chamativas", "emb": "1 L, 5 L, 20 L", "venda": "Espuma densa e cremosa para pré-lavagem profissional — visual impressionante e limpeza eficiente.", "custo": "Ótimo apelo visual para estéticas e lava-rápidos com canhão."}, {"id": "f004", "cat": "limpeza-externa", "catName": "Limpeza Externa", "catIcon": "🧴", "title": "Lava Seco Automotivo", "desc": "Produto para limpeza externa sem água e sem enxágue, para remoção de poeira e resíduos leves. Extremamente prático para uso em condomínios e entre lavagens.", "uses": ["Pintura com poeira leve", "Vidros externos", "Plásticos externos", "Motos", "Entre lavagens"], "ingFunc": [["Tensoativo não iônico", "Solta sujeira leve sem enxágue"], ["Silicone emulsionado", "Brilho e deslizamento"]]}, {"id": "f005", "cat": "limpeza-externa", "catName": "Limpeza Externa", "catIcon": "🧴", "title": "Limpa Vidros Automotivo", "desc": "Produto para limpeza de vidros automotivos com secagem rápida e sem marcas. Vidros limpos são fundamentais para a segurança do motorista.", "uses": ["Para-brisa externo e interno", "Vidros laterais", "Vidro traseiro", "Retrovisores", "Espelhos internos"], "ingFunc": [["Água deionizada", "Fundamental — água comum deixa marcas minerais"], ["Álcool isopropílico", "Principal ativo de limpeza e secagem rápida sem marcas"]]}, {"id": "f006", "cat": "limpeza-externa", "catName": "Limpeza Externa", "catIcon": "🧴", "title": "Removedor de Insetos", "desc": "Remove resíduos de insetos grudados na pintura, para-brisa, grade e para-choque. Insetos ressecam rapidamente — o removedor específico facilita muito a remoção.", "uses": ["Para-choque dianteiro", "Grade frontal", "Retrovisores", "Para-brisa externo", "Faróis, com teste prévio"], "ingFunc": [["Butil glicol em maior proporção", "Dissolve o componente proteico e oleoso dos insetos"], ["Tensoativos", "Emulsificam e removem os resíduos"]]}, {"id": "f012", "cat": "acabamento-brilho", "catName": "Acabamento e Brilho", "catIcon": "✨", "title": "Pretinho para Pneus — Silicone Líquido", "desc": "Produto para dar brilho e renovar a aparência da borracha dos pneus. Um dos produtos mais vendidos de toda a linha automotiva — baixo custo, resultado imediato.", "uses": ["Pneus de carros, motos e caminhões", "Borrachas externas", "Acabamentos de borracha"], "formula": [["Água filtrada/deionizada", "74 L"], ["Silicone emulsionado 60%", "18 L"], ["Glicerina bidestilada", "3 L"], ["Tensoativo não iônico suave", "1 L"], ["Espessante acrílico", "até 1,5 kg"], ["Conservante", "200 ml"], ["Fragrância", "300 ml"], ["Corante preto/azul escuro", "q.s."], ["Água p/ completar", "até 100 L"]], "ingFunc": [["Silicone emulsionado 60%", "Deposita na borracha e entrega o acabamento escuro e brilhante"], ["Glicerina bidestilada", "Aspecto hidratado e melhora o espalhamento"], ["Espessante", "Controla a viscosidade — evita que o produto escorra do pneu"]], "prep": ["Coloque 65 L de água", "Adicione o tensoativo suave e a glicerina", "Adicione o silicone emulsionado aos poucos, com agitação constante", "Misture até ficar completamente homogêneo", "Adicione o espessante em fio contínuo", "Misture até a viscosidade desejada", "Acrescente conservante, fragrância e corante", "Complete até 100 L", "Deixar descansar 24 h antes de envasar"], "dil": [["Aplicação direta", "Puro", "Não diluir"]], "app": "Limpar o pneu antes. Aplicar com aplicador de esponja. Espalhar uniformemente. Aguardar 3 a 5 minutos.", "caut": ["NUNCA aplicar na banda de rodagem — risco de acidente", "Não aplicar em pedal ou volante", "Evitar excesso — pneu acumula poeira", "Não aplicar em pneu sujo ou molhado"], "err": ["Aplicar demais — aspecto oleoso e acumula poeira", "Usar em pneu com barro", "Fazer produto muito ralo"], "frag": "Black, pneu novo, cereja, tutti-frutti", "cor": "Preto intenso, azul muito escuro ou roxo", "emb": "500 ml, 1 L, 5 L, 20 L", "venda": "Pretinho profissional com silicone — pneu brilhante, renovado e com aparência de carro zero.", "custo": "Um dos produtos mais baratos de produzir com maiores margens. Altíssimo giro."}, {"id": "f013", "cat": "acabamento-brilho", "catName": "Acabamento e Brilho", "catIcon": "✨", "title": "Pretinho Gel", "desc": "Versão gel do pretinho com maior viscosidade, brilho mais intenso e maior percepção de valor. Controla melhor a quantidade aplicada e entrega resultado mais duradouro.", "uses": ["Pneus de carros e motos", "Borrachas externas", "Estética automotiva profissional", "Cliente premium"], "ingFunc": [["Silicone maior concentração", "Brilho mais intenso e duradouro"], ["Glicerina + propilenoglicol", "Aspecto hidratado e toque premium na borracha"]]}, {"id": "f014", "cat": "acabamento-brilho", "catName": "Acabamento e Brilho", "catIcon": "✨", "title": "Revitalizador de Plásticos Externos", "desc": "Produto para renovar plásticos externos ressecados e cinzas, devolvendo aparência mais escura e cuidada. Plásticos expostos ao sol envelhecem — o revitalizador resolve.", "uses": ["Para-choques plásticos", "Frisos laterais e molduras", "Caixas de roda", "Retrovisores plásticos", "Plásticos externos de motos"], "ingFunc": [["Silicone alto brilho + seco combinados", "Brilho sem excesso de oleosidade — equilíbrio é o diferencial"], ["Resina acrílica", "Melhora a fixação e durabilidade no plástico"]]}, {"id": "f015", "cat": "acabamento-brilho", "catName": "Acabamento e Brilho", "catIcon": "✨", "title": "Cera Líquida Automotiva", "desc": "Produto para dar brilho e proteção leve à pintura, melhorando o aspecto visual e criando barreira superficial. Ideal para manutenção de brilho entre polimentos.", "uses": ["Pintura de carros e motos", "Manutenção regular de brilho", "Acabamento após lavagem", "Veículos encerados"], "ingFunc": [["Cera de carnaúba", "Brilho quente e natural, toque liso característico"], ["Cera sintética", "Proteção adicional e maior durabilidade"]]}, {"id": "f016", "cat": "acabamento-brilho", "catName": "Acabamento e Brilho", "catIcon": "✨", "title": "Finalizador de Brilho Rápido", "desc": "Produto de acabamento rápido para realçar brilho e criar toque liso após a lavagem. Também chamado de quick detailer — o produto final da sequência de lavagem profissional.", "uses": ["Pintura limpa após lavagem", "Motos", "Pós-lavagem para acabamento rápido", "Entre lavagens para refresh"], "ingFunc": [["Silicone leve", "Brilho sem peso — não deixa aspecto oleoso"], ["Polímero de brilho", "Toque liso (slickness) e profundidade de brilho"]]}, {"id": "f017", "cat": "limpeza-interna", "catName": "Limpeza Interna", "catIcon": "🚗", "title": "Limpador de Painel", "desc": "Produto para limpeza de poeira, marcas de dedos e gordura leve do painel e plásticos internos. Deixa o painel limpo com toque agradável e aroma suave.", "uses": ["Painel principal", "Portas e laterais internas", "Console central", "Acabamentos plásticos internos", "Porta-copos e porta-objetos"], "formula": [["Água deionizada", "85 L"], ["Tensoativo não iônico suave", "3 L"], ["Cocoamidopropil betaína", "2 L"], ["Álcool isopropílico", "3 L"], ["Silicone emulsionado leve", "2 L"], ["Propilenoglicol", "1 L"], ["Conservante", "200 ml"], ["Fragrância suave", "500 ml"], ["Corante", "q.s. mínimo"], ["Água p/ completar", "até 100 L"]], "ingFunc": [["Tensoativo não iônico suave", "Remove gordura leve sem agredir o plástico"], ["Betaína", "Suaviza e melhora a experiência tátil"], ["Álcool isopropílico", "Secagem rápida sem película"], ["Silicone leve", "Acabamento discreto sem reflexo no para-brisa"]], "prep": ["Coloque 75 L de água", "Adicione o tensoativo suave e misture", "Acrescente a betaína", "Adicione o propilenoglicol", "Coloque o silicone emulsionado leve", "Acrescente o álcool lentamente", "Adicione conservante e fragrância suave", "Coloque corante em quantidade mínima", "Complete até 100 L", "Misture até uniformizar"], "dil": [["Limpeza normal", "Puro", "Não diluir"], ["Manutenção leve", "1:1", "Diluir com água limpa"]], "app": "Borrifar no pano de microfibra — NUNCA diretamente no painel. Passar suavemente. Remover excesso com o lado seco.", "caut": ["NUNCA borrifar em telas multimídia ou sensores", "Não aplicar excesso no volante — silicone escorrega", "Evitar silicone excessivo — causa reflexo no para-brisa"], "err": ["Borrifar direto no painel — cai em eletrônicos", "Usar demais — painel oleoso atrai poeira", "Fragrância forte demais — incomoda o motorista"], "frag": "Carro novo, talco, lavanda, fresh, couro suave", "cor": "Transparente, azul muito claro ou leitoso", "emb": "500 ml, 1 L, 5 L", "venda": "Limpador de painel com acabamento limpo, toque suave e aroma agradável — interior renovado em minutos.", "custo": "Produto barato com ótima recompra. Primeiro produto pedido em kits de limpeza interna."}, {"id": "f018", "cat": "limpeza-interna", "catName": "Limpeza Interna", "catIcon": "🚗", "title": "Limpador de Bancos de Tecido", "desc": "Produto para limpeza de bancos estofados em tecido, removendo sujeira, gordura corporal e manchas leves. O tecido retém muito mais sujeira que outros materiais e precisa de produto específico.", "uses": ["Bancos de tecido dianteiros e traseiros", "Laterais de porta em tecido", "Encostos de cabeça", "Estofados em geral"], "ingFunc": [["Butil glicol", "Essencial para gordura corporal — suor e oleosidade"], ["Sequestrante", "Melhora desempenho e evita redeposição de sujeira"]]}, {"id": "f019", "cat": "limpeza-interna", "catName": "Limpeza Interna", "catIcon": "🚗", "title": "Limpador de Couro", "desc": "Produto para limpeza de couro automotivo, removendo sujeira leve e gordura corporal sem ressecar o material. O couro precisa de produto específico — alcalino forte o danifica.", "uses": ["Bancos de couro", "Volante de couro, com cuidado", "Laterais de porta em couro", "Detalhes internos revestidos"], "ingFunc": [["Tensoativo suave + betaína", "Limpeza eficiente sem agressividade — sem alcalino"], ["Glicerina", "Reduz o ressecamento após a limpeza"]]}, {"id": "f020", "cat": "limpeza-interna", "catName": "Limpeza Interna", "catIcon": "🚗", "title": "Higienizador Interno Automotivo", "desc": "Produto para limpeza e higienização geral do interior, removendo sujeira superficial, controlando odores e deixando o ambiente com sensação de frescor.", "uses": ["Painel e plásticos internos", "Bancos de tecido", "Carpetes", "Portas internas", "Porta-malas"], "ingFunc": [["Álcool", "Principal ativo de higienização e secagem rápida"], ["Neutralizador de odores", "Controla odores internos sem apenas mascarar"]]}, {"id": "f021", "cat": "limpeza-interna", "catName": "Limpeza Interna", "catIcon": "🚗", "title": "Limpa Ar-Condicionado Automotivo", "desc": "Produto para limpeza e aromatização do sistema de ventilação, reduzindo odores desagradáveis. O ar-condicionado acumula fungos, bactérias e odores que saem com o ar.", "uses": ["Saídas de ar do painel", "Sistema de ventilação", "Interior do veículo em spray"], "ingFunc": [["Álcool maior concentração", "Eliminação de odores e secagem nas duchas"], ["Neutralizador maior concentração", "Fundamental — odor do ar-condicionado é muito persistente"]]}, {"id": "f022", "cat": "aromatizacao", "catName": "Aromatização", "catIcon": "🌸", "title": "Aromatizante Spray Básico", "desc": "Produto para perfumar o interior do veículo com aroma agradável e aplicação prática. Um dos produtos de maior recompra do mercado automotivo.", "uses": ["Interior do veículo em geral", "Bancos e tapetes", "Porta-malas", "Uso após limpeza interna"], "formula": [["Água deionizada", "82 L"], ["Álcool etílico ou isopropílico", "12 L"], ["Solubilizante de fragrância", "4 L"], ["Fragrância", "1,5 L"], ["Conservante", "200 ml"], ["Corante", "q.s. mínimo"], ["Água p/ completar", "até 100 L"]], "ingFunc": [["Álcool", "Dispersão da fragrância no ambiente"], ["Solubilizante", "Incorpora a fragrância na base aquosa"], ["Fragrância", "Responsável pelo aroma — principal ativo"]], "prep": ["Coloque 70 L de água", "Em separado, misture fragrância com solubilizante até incorporar completamente", "Adicione essa mistura ao tanque lentamente", "Acrescente o álcool", "Adicione o conservante", "Coloque corante mínimo", "Complete até 100 L", "Misture até ficar uniforme e transparente", "Deixar descansar antes de envasar"], "dil": [["Uso direto", "Puro", "Não diluir"]], "app": "Agitar levemente. Pulverizar 2 a 3 vezes no interior. Fechar por alguns minutos para o aroma fixar.", "caut": ["Não aplicar em telas e eletrônicos", "Não aplicar em couro claro sem teste", "Guardar longe de calor e chama"], "err": ["Fragrância sem solubilizante — produto turvo", "Corante forte que mancha tecido", "Fragrâncias incompatíveis com a base"], "frag": "Carro novo, cereja, baunilha, marine, lavanda, black", "cor": "Combinando com a fragrância — azul (marine), amarelo (citrus)", "emb": "100 ml, 200 ml, 500 ml, 1 L", "venda": "Aromatizante spray para interior do veículo com aroma agradável e aplicação prática.", "custo": "Custo muito baixo e ótima margem. Alta recompra — cliente que gosta volta a comprar."}, {"id": "f023", "cat": "aromatizacao", "catName": "Aromatização", "catIcon": "🌸", "title": "Aromatizante Gel", "desc": "Produto em formato gel para aromatização contínua do interior do veículo. O gel libera o aroma gradualmente, mantendo o perfume por mais tempo sem necessidade de spray periódico.", "uses": ["Interior do veículo", "Porta-luvas", "Console", "Sob os bancos", "Porta-malas"], "ingFunc": [["Carbomer", "Forma a estrutura em gel"], ["Neutralizante (TEA)", "Ativa o carbomer e transforma em gel firme"]]}, {"id": "f024", "cat": "aromatizacao", "catName": "Aromatização", "catIcon": "🌸", "title": "Neutralizador de Odores", "desc": "Produto para eliminar odores desagradáveis do interior do veículo, não apenas mascarar. Indicado para odor de cigarro, mofo, animais e ar fechado.", "uses": ["Interior com odores", "Tapetes e bancos", "Porta-malas", "Caminhões", "Carros com animais"], "ingFunc": [["Neutralizador de odores", "Age sobre moléculas de odor — não apenas mascara"], ["Álcool", "Dispersão e secagem"]]}, {"id": "f025", "cat": "aromatizacao", "catName": "Aromatização", "catIcon": "🌸", "title": "Perfume Automotivo Premium Spray", "desc": "Produto posicionado como perfume para o interior do veículo com fragrância sofisticada. Ideal para venda em embalagem menor com alto valor percebido.", "uses": ["Interior do veículo", "Cliente premium", "Presente e mimo", "Estética de alto padrão"], "ingFunc": [["Álcool de alta pureza maior concentração", "Base sofisticada para fragrância premium"], ["Fragrância premium concentrada", "Principal diferencial — qualidade da fragrância define o produto"]]}];
+let AFN=AF.filter(f=>!f.extra);
+let LF=[];
+let LG=[];
+const AC=[{"id": "limpeza-externa", "name": "Limpeza Externa", "icon": "🧴", "total": 6}, {"id": "acabamento-brilho", "name": "Acabamento e Brilho", "icon": "✨", "total": 5}, {"id": "limpeza-interna", "name": "Limpeza Interna", "icon": "🚗", "total": 5}, {"id": "aromatizacao", "name": "Aromatização", "icon": "🌸", "total": 4}];
+let LC=[];
+const GL=[["Lauril éter sulfato 27%", "3–20%", "Espuma e limpeza principal", "Lauril 70%, blend", "R$ 10–25/L"], ["Lauril éter sulfato 70%", "1–8%", "Concentrado — espuma intensa", "Lauril 27% maior qtd", "R$ 20–45/L"], ["Cocoamidopropil betaína 35%", "1–5%", "Suavidade e espuma cremosa", "Anfotérico similar", "R$ 15–35/L"], ["Amida 60 (dianolamida coco)", "1–5%", "Espessante e estabilizador", "Betaína em parte", "R$ 20–45/L"], ["Tensoativo não iônico NI-9", "1–8%", "Desengraxe versátil", "Álcool graxo etoxilado", "R$ 15–40/L"], ["Ácido sulfônico LABSA", "2–10%", "Detergência aniônica forte", "Lauril éter sulfato", "R$ 8–20/L"], ["Polissorbato 20 (Tween 20)", "1–5%", "Solubilizante de fragrâncias", "Polissorbato 80", "R$ 25–60/L"], ["Polissorbato 80 (Tween 80)", "1–5%", "Emulsionante e solubilizante", "Polissorbato 20", "R$ 25–60/L"], ["Água deionizada", "50–90%", "Base limpa — sem marcas minerais", "Água filtrada", "R$ 1–5/L"], ["Butil glicol (2-butoxietanol)", "1–8%", "Solvente desengraxante principal", "Solvente glicólico", "R$ 25–60/L"], ["Álcool isopropílico 99%", "2–30%", "Secagem rápida e higienização", "Álcool etílico", "R$ 15–40/L"], ["Álcool etílico 96%", "2–30%", "Evaporação rápida", "Álcool isopropílico", "R$ 12–35/L"], ["Propilenoglicol (PG)", "1–5%", "Fixação e espalhamento", "Glicerina", "R$ 15–40/L"], ["D-limoneno (solvente cítrico)", "2–15%", "Solvente natural cítrico", "Solvente alifático", "R$ 50–150/L"], ["Solvente alifático desodorizado", "5–20%", "Remove piche e cola", "D-limoneno", "R$ 20–50/L"], ["Soda líquida 50% (NaOH)", "1–10%", "Alcalinidade forte", "Metassilicato + carbonato", "R$ 5–15/L"], ["Metassilicato de sódio", "1–6%", "Alcalinidade + limpeza pesada", "Carbonato + soda", "R$ 8–25/kg"], ["Carbonato de sódio (barrilha)", "1–8%", "Alcalinizante econômico", "Metassilicato", "R$ 4–12/kg"], ["Bicarbonato de sódio", "1–5%", "Alcalinizante suave", "Carbonato de sódio", "R$ 5–15/kg"], ["Tripolifosfato de sódio", "1–5%", "Sequestra minerais da água dura", "EDTA, citrato", "R$ 8–20/kg"], ["TEA (trietanolamina)", "0,1–2%", "Neutralizante do carbomer", "MEA, alcalinizante leve", "R$ 20–50/L"], ["Ácido cítrico anidro", "1–6%", "Remove minerais e pH ácido", "Ácido lático", "R$ 10–35/kg"], ["Ácido fosfórico 85%", "3–10%", "Limpa alumínio e oxidação", "Ácido sulfâmico", "R$ 15–40/L"], ["Ácido sulfâmico", "1–5%", "Remove calcário e cimento", "Ácido cítrico", "R$ 15–40/kg"], ["Ácido lático 80%", "1–5%", "Remoção suave de minerais", "Ácido cítrico", "R$ 20–50/L"], ["Cloreto de sódio (sal)", "0,5–2%", "Ajuste de viscosidade", "Espessante acrílico", "R$ 2–6/kg"], ["Carbomer (espessante acrílico)", "0,3–2%", "Gelificante — ativar com TEA", "Goma xantana", "R$ 60–200/kg"], ["Goma xantana", "0,1–1%", "Espessante natural", "Carbomer", "R$ 40–120/kg"], ["CMC (carboximetilcelulose)", "0,5–2%", "Espessante econômico", "Goma xantana", "R$ 20–60/kg"], ["EDTA dissódico", "0,1–1%", "Sequestra minerais da água", "Tripolifosfato", "R$ 25–80/kg"], ["Glicerina bidestilada 99%", "1–5%", "Umectância e toque suave", "Propilenoglicol", "R$ 8–25/L"], ["Silicone emulsionado 60%", "2–25%", "Brilho — pneus e plásticos", "Silicone fluido", "R$ 35–90/L"], ["Silicone acabamento seco", "2–10%", "Acabamento matte", "Silicone leve diluído", "R$ 50–120/L"], ["Cera de carnaúba emulsionada", "2–10%", "Brilho natural e proteção", "Cera sintética", "R$ 35–120/L"], ["Cera sintética emulsionada", "2–8%", "Proteção e acabamento", "Cera de carnaúba", "R$ 30–80/L"], ["Resina acrílica emulsionada", "1–5%", "Fixação em plásticos", "Resina PVA diluída", "R$ 20–60/L"], ["Polímero de brilho", "1–5%", "Toque liso e wet look", "Silicone + cera", "R$ 40–100/L"], ["Fragrância concentrada", "0,2–12%", "Perfume e valor percebido", "Outra essência", "R$ 40–200/L"], ["Fixador de fragrância", "0,1–0,5%", "Prolonga a permanência", "Fixador isopropílico", "R$ 30–80/L"], ["Neutralizador de odores", "1–5%", "Elimina odores sem mascarar", "Fragrância funcional", "R$ 30–120/L"], ["Conservante (Kathon, Euxyl)", "0,1–0,3%", "Conservação do produto", "Blend conservante", "R$ 40–150/L"], ["Inibidor de corrosão (BTA)", "0,1–1%", "Protege metais em ácidos", "Inibidor específico", "R$ 40–150/L"], ["Hidrotropo (xilenosulfonato)", "1–5%", "Estabiliza a fórmula", "Cumeno sulfonato", "R$ 15–40/L"], ["Pigmento/Corante líquido", "0,01–0,5%", "Cor do produto", "Corante em pó", "R$ 20–80/L"], ["DSDMAC (ativo amaciante)", "5–20%", "Amacia tecidos — amaciante", "Catiônico similar", "R$ 25–60/L"], ["Percarbonato de sódio", "5–15%", "Alvejante sem cloro", "Água oxigenada", "R$ 12–30/kg"], ["Silicone fluido PDMS 350cst", "1–10%", "Brilho leve", "Silicone emulsionado", "R$ 40–100/L"], ["Emulsão condicionante couro", "2–10%", "Cuidado de couro", "Emulsão similar", "R$ 40–120/L"], ["Polissorbato 20 (solubilizante)", "1:1 a 1:3", "Mistura fragrância", "Tween, hidrotropo", "R$ 25–60/L"], ["Inibidor alumínio (BTA/MBT)", "0,2–1%", "Protege alumínio em ácidos — OBRIGATÓRIO", "Inibidor específico", "R$ 50–180/L"], ["D-Pantenol (provitamina B5)", "0,5–2%", "Condicionante couro", "Vitamina E", "R$ 60–150/L"]];
+const SU={"🛒 Marketplaces Online": [["MERCADO LIVRE", "Nacional", "mercadolivre.com.br → buscar: lauril éter sulfato, silicone emulsionado, butil glicol"], ["SHOPEE", "Nacional", "shopee.com.br → buscar: insumos para limpeza, silicone emulsionado"], ["AMAZON BRASIL", "Nacional", "amazon.com.br → matéria prima limpeza, tensoativo"], ["ALIEXPRESS", "Internacional", "aliexpress.com → atenção ao prazo e importação"]], "🌐 Lojas Online": [["CASA DOS QUÍMICOS", "Indaiatuba-SP", "casadosquimicos.com.br | (19) 3199-8553"], ["CHEMAX", "Itapevi-SP", "chemax.com.br | (11) 4772-7272"], ["QUIMIDROL", "Joinville-SC", "quimidrol.com.br | 0800-644-6560"], ["BASEQUÍMICA", "Ribeirão Preto-SP", "basequimica.com | (16) 3636-5656"], ["ESSÊNCIA DO BRASIL", "São Paulo-SP", "essenciadobrasil.com.br"], ["CASA DAS ESSÊNCIAS", "São Paulo-SP", "casadasessencias.com.br | (11) 3291-4444"]], "🔴 Nordeste": [["UNIÃO QUÍMICA", "Recife-PE", "(81) 3471-1330 | WA: (81) 98177-1330"], ["CODOSSAL QUÍMICA", "Recife-PE", "(81) 3428-2228 | WA: (81) 99591-2395"], ["DISTRIBUIDORA OK", "Camaragibe-PE", "WA: (81) 99654-9775"], ["MULTQUIL QUÍMICA", "João Pessoa-PB", "(83) 3235-5800"], ["DISTRIBUIDORA KLEAN", "Maceió-AL", "(82) 3036-1250"], ["SHOPPING DA LIMPEZA", "São Luís-MA", "(98) 2109-6582"], ["SULQUÍMICA", "Salvador-BA", "(71) 3341-2200"], ["PETROWAN", "Nordeste", "petrowan.com.br"], ["INFINITY NORDESTE", "Nordeste", "infinitynordeste.com.br"]], "🟢 Sudeste": [["BARBAREX", "Nova Odessa-SP", "(19) 3466-8888 | barbarex.com.br"], ["ROYAL MARCK", "Guarulhos-SP", "(11) 2413-1122 | royalmarck.com.br"], ["HIGICLEAR", "Campinas-SP", "0800-006-4747 | higiclear.com"], ["MAPRIC", "São Paulo-SP — silicones", "(11) 3340-8000 | mapric.com.br"], ["ECOMASTER", "Uberaba-MG", "(34) 3311-2005 | ecomaster.ind.br"], ["MIX DAS ESSÊNCIAS", "Belo Horizonte-MG", "(31) 3274-8898"], ["AROMALÂNDIA", "Serra-ES", "(27) 3252-6145"], ["LANLIMP", "Queimados-RJ", "(24) 2106-9420"]], "🔵 Sul": [["DIPA QUÍMICA", "Curitiba-PR", "(41) 3245-0777 | dipaquimica.com.br"], ["CLOROQUÍMICA", "Curitiba-PR", "(41) 3322-3844"], ["QUIMIDROL", "Joinville-SC", "0800-644-6560 | quimidrol.com.br"], ["MACLER", "Timbó-SC", "(47) 3323-5012 | macler.com.br"], ["CASA DOS QUÍMICOS RS", "Flores da Cunha-RS", "(54) 3292-2941"]], "🟡 Centro-Oeste": [["CASA DA QUÍMICA DF", "Taguatinga-DF", "casadaquimicadf.com.br"], ["TOMATEC", "Goiânia-GO", "tomatec-go.com.br"], ["GOIÁS QUÍMICA", "Goiânia-GO", "goiasquimica.com.br"], ["POLIQUÍMICA", "Campo Grande-MS", "lojapoliquimica.com.br"]], "🟠 Norte": [["AM QUÍMICA", "Manaus-AM", "(92) 3018-0202 | amquimica.com.br"], ["PARQUÍMICA", "Ananindeua-PA", "WA: (91) 98119-9507"], ["CARAJÁS PRODUTOS", "Palmas-TO", "(63) 3213-1061"], ["ECONORTE", "Boa Vista-RR", "econorterr.com"]], "💡 Como buscar nos Marketplaces": [["TENSOATIVOS", "ML/Shopee", "lauril éter sulfato 27% · betaína 35% · amida 60"], ["SOLVENTES", "ML/Shopee", "butil glicol · álcool isopropílico 99% · d-limoneno"], ["ALCALINOS", "ML/Shopee", "soda líquida 50% · metassilicato · carbonato barrilha"], ["ACABAMENTO", "ML/Shopee", "silicone emulsionado · cera carnaúba emulsão · carbomer"], ["FRAGRÂNCIAS", "ML/Shopee", "fragrância automotiva concentrada · essência carro novo"], ["ÁCIDOS", "ML/Shopee", "ácido cítrico granel · ácido fosfórico 85%"], ["EMBALAGENS", "ML/Shopee", "frasco PEAD 1L · bombona 5L · galão 20L PEAD"]]};
+const BO=[{"icon": "💰", "name": "Precificação Automática", "desc": "Calcule custo e preço ideal", "url": "https://precificao-automatica.luverisgroup.com.br/"}];
+const WA="558131963052";
+
+// ── STATE ──────────────────────────────────────────────────────────
+function ls(k,d){try{return JSON.parse(localStorage.getItem(k)||d);}catch{return JSON.parse(d);}}
+function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch{}}
+
+
+// ── Sistema de autenticação por email ────────────────────────────
+function _fapShowLogin(msg){
+  if(document.getElementById('fap-login'))return;
+  var el=document.createElement('div');el.id='fap-login';
+  el.innerHTML='<div style="position:fixed;inset:0;overflow-y:auto;background:#080B0F;display:flex;align-items:center;justify-content:center;padding:24px;font-family:system-ui,sans-serif;z-index:10000">'
+    +'<div style="background:#111418;border:1px solid #21262D;border-radius:20px;padding:32px 24px;max-width:360px;width:100%;text-align:center">'
+    +'<div style="font-size:48px;margin-bottom:12px">⚡</div>'
+    +'<h1 style="font-size:22px;font-weight:800;color:#F0F6FC;margin-bottom:4px">Fórmula Auto Pro Essencial</h1>'
+    +'<p style="font-size:11px;font-weight:800;color:#E8720C;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px">Sou aluno(a) — digite o email da compra</p>'
+    +'<input id="fap-ei" type="email" placeholder="seu@email.com" autocomplete="email" style="width:100%;padding:14px;border-radius:10px;border:1px solid #21262D;background:#0D1117;color:#F0F6FC;font-size:15px;margin-bottom:12px;outline:none"/>'
+    +'<button id="fap-eb" onclick="_fapDoLogin()" style="width:100%;padding:16px;border-radius:12px;background:linear-gradient(135deg,#E8720C,#C45E08);color:#fff;font-size:15px;font-weight:700;border:none;cursor:pointer">Acessar →</button>'
+    +'<p id="fap-ee" style="font-size:12px;color:#F85149;margin-top:10px;min-height:18px">'+(msg||'')+'</p>'
+    +'<div style="display:flex;align-items:center;gap:10px;margin:22px 0 16px"><div style="flex:1;height:1px;background:#21262D"></div><span style="font-size:11px;color:#484F58">ou</span><div style="flex:1;height:1px;background:#21262D"></div></div>'
+    +'<p style="font-size:11px;color:#8B949E;margin-bottom:10px;line-height:1.5">Ainda não comprou?</p>'
+    +'<button id="fap-pb" onclick="_fapStartPreview()" style="width:100%;padding:14px;border-radius:12px;background:transparent;color:#FFB347;font-size:13px;font-weight:700;border:1.5px solid #E8720C;cursor:pointer">👀 Quero conhecer a plataforma</button>'
+    +'<p style="font-size:11px;color:#484F58;margin-top:20px">Problemas? <a href="https://wa.me/558131963052" style="color:#E8720C;text-decoration:none">Fale com o suporte</a></p>'
+    +'</div></div>';
+  document.body.appendChild(el);
+  setTimeout(function(){var i=document.getElementById('fap-ei');if(i)i.focus();},300);
+}
+
+function _fapApplyPerms(perms){
+  localStorage.setItem('fap_perms',JSON.stringify(perms));
+  localStorage.removeItem('fap_preview');
+  localStorage.removeItem('fap_buy_intent');
+  S.preview=false;
+  S.access={base:perms.base||false,limp:perms.limp||false,leg:perms.leg||false,upg:perms.upg||false,full:false,admin:false};
+  var el=document.getElementById('fap-login');if(el)el.remove();
+  var ap=document.getElementById('app');if(ap)ap.removeAttribute('hidden');
+  _fapLoadLocked();
+  render();
+  var standalone=window.matchMedia('(display-mode:standalone)').matches||navigator.standalone;
+  if(!standalone&&!localStorage.getItem('fap_inst_shown')){setTimeout(openInst,1500);localStorage.setItem('fap_inst_shown','1');}
+}
+
+// ── Modo Prévia (visitantes que ainda não compraram) ───────────────
+function _fapPixel(event,params){
+  try{ if(typeof fbq==='function') fbq('track',event,params||{}); }catch(e){}
+}
+
+function _fapStartPreview(){
+  localStorage.setItem('fap_preview','1');
+  S.preview=true;
+  S.access={base:false,limp:false,leg:false,upg:false,full:false,admin:false};
+  var el=document.getElementById('fap-login');if(el)el.remove();
+  var ap=document.getElementById('app');if(ap)ap.removeAttribute('hidden');
+  go('auto');
+  _fapPixel('ViewContent',{content_name:'Fórmula Auto Pro Essencial - Modo Prévia',content_category:'preview_mode'});
+}
+
+document.addEventListener('visibilitychange',function(){
+  if(document.hidden)return;
+  if(S.preview&&localStorage.getItem('fap_buy_intent'))render();
+  if(localStorage.getItem('fap_email')&&!document.getElementById('fap-login'))_fapBgRefresh();
+});
+
+function _fapExitPreviewToLogin(){
+  localStorage.removeItem('fap_preview');
+  S.preview=false;
+  _fapShowLogin();
+}
+
+function _fapDoLogin(){
+  var btn=document.getElementById('fap-eb'),ee=document.getElementById('fap-ee'),ei=document.getElementById('fap-ei');
+  var email=(ei?ei.value:'').trim().toLowerCase();
+  if(!email){if(ee)ee.textContent='Digite seu email';return;}
+  if(btn){btn.textContent='Verificando...';btn.disabled=true;}
+  if(ee)ee.textContent='';
+  fetch('/api/login?email='+encodeURIComponent(email),{cache:'no-store'})
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(d.success){
+        localStorage.setItem('fap_email',email);
+        _fapApplyPerms(d.permissions);
+      }else{
+        if(ee)ee.textContent=d.error||'Email não encontrado';
+        if(btn){btn.textContent='Acessar →';btn.disabled=false;}
+      }
+    })
+    .catch(function(){
+      if(ee)ee.textContent='Erro de conexão. Tente novamente.';
+      if(btn){btn.textContent='Acessar →';btn.disabled=false;}
+    });
+}
+
+function _fapBgRefresh(){
+  var email=localStorage.getItem('fap_email');
+  if(!email)return;
+  fetch('/api/login?email='+encodeURIComponent(email),{cache:'no-store'})
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(d.success){
+        localStorage.setItem('fap_perms',JSON.stringify(d.permissions));
+        S.access={base:d.permissions.base||false,limp:d.permissions.limp||false,leg:d.permissions.leg||false,upg:d.permissions.upg||false,full:false,admin:false};
+        _fapLoadLocked();
+        render();
+      }else{
+        localStorage.removeItem('fap_email');
+        localStorage.removeItem('fap_perms');
+      }
+    })
+    .catch(function(){});
+}
+
+function parseAccess(){
+  var saved=localStorage.getItem('fap_perms');
+  if(saved){try{var pr=JSON.parse(saved);return{base:pr.base||false,limp:pr.limp||false,leg:pr.leg||false,upg:pr.upg||false,full:false,admin:false};}catch(e){}}
+  return{base:false,limp:false,leg:false,upg:false,full:false,admin:false};
+}
+
+let S={
+  view:'home',
+  // navigation state
+  autoCat:null, autoForm:null,
+  limpCat:null, limpForm:null,
+  legCap:null,
+  // search
+  searchQ:'',
+  // prefs
+  favs:ls('fap_fav','[]'),
+  viewed:ls('fap_viewed','[]'),
+  access:parseAccess(),
+  instTab:'ios',
+  preview:localStorage.getItem('fap_preview')==='1',
+};
+
+// 1 fórmula completa liberada por categoria no Modo Prévia para quem ainda não comprou
+// (sempre a receita de entrada de cada categoria, pra dar uma amostra de tudo sem entregar o avançado)
+const PREVIEW_IDS=["f001", "f003", "f012", "f017", "f022"];
+const CK='https://pagamento.luverisgroup.com.br/apess';
+const FULL_URL='https://formulaauto.luverisgroup.com.br/';
+const CHECKOUT_URLS={base:CK,limp:CK+'/limp',leg:CK+'/leg',upg:CK+'/upg'};
+function ckUrl(k){var u=CHECKOUT_URLS[k]||CK;try{var e=localStorage.getItem('fap_email');if(e)u+='?email='+encodeURIComponent(e);}catch(x){}return u;}
+const PDF_NAMES={limp:'50-Formulas-de-Limpeza.pdf',leg:'Guia-de-Legalizacao.pdf'};
+// Conteúdo pago NÃO vem no HTML: só é baixado da API depois de conferir o acesso do e-mail.
+const LOADED={};
+function _fapLoadLocked(){
+  var email=localStorage.getItem('fap_email')||'';
+  if(!email)return;
+  ['base','limp','leg'].forEach(function(k){
+    if(!S.access[k]||LOADED[k]==='ok'||LOADED[k]==='loading')return;
+    LOADED[k]='loading';
+    fetch('/api/conteudo?k='+k+'&email='+encodeURIComponent(email),{cache:'no-store'})
+      .then(function(r){if(!r.ok)throw new Error('x');return r.json();})
+      .then(function(d){
+        if(k==='base'){AF=d.AF;AFN=AF.filter(function(f){return !f.extra;});}
+        if(k==='limp'){LF=d.LF;LC=d.LC;}
+        if(k==='leg'){LG=d.LG;}
+        LOADED[k]='ok';render();
+      })
+      .catch(function(){LOADED[k]='err';render();});
+  });
+}
+function _fapRetryLoad(){Object.keys(LOADED).forEach(function(k){if(LOADED[k]==='err')delete LOADED[k];});_fapLoadLocked();render();}
+function rLoading(){
+  var err=Object.keys(LOADED).some(function(k){return LOADED[k]==='err';});
+  return'<div class="es"><div class="ei">'+(err?'📡':'⏳')+'</div><div class="et">'+(err?'Não foi possível carregar':'Carregando conteúdo…')+'</div>'+(err?'<div class="ex2">Verifique sua internet e tente de novo.</div><button class="dl-btn" style="margin-top:16px" onclick="_fapRetryLoad()">Tentar novamente</button>':'')+'</div>';
+}
+
+const $=id=>document.getElementById(id);
+const M=()=>$('main');
+
+function go(view,extra={}){
+  Object.assign(S,{view},extra);
+  render();
+  window.scrollTo(0,0);
+  updNav();
+}
+function updNav(){
+  document.querySelectorAll('.ni').forEach(el=>
+    el.classList.toggle('on', el.dataset.v===S.view));
+}
+function isFav(id){return S.favs.includes(id);}
+function isVd(id){return S.viewed.includes(id);}
+function togFav(id,e){
+  if(e){e.stopPropagation();}
+  S.favs=isFav(id)?S.favs.filter(x=>x!==id):[...S.favs,id];
+  sv('fap_fav',S.favs);
+  render();
+}
+function markVd(id){
+  if(!isVd(id)){S.viewed=[...S.viewed,id];sv('fap_viewed',S.viewed);}
+}
+function updProg(){
+  const t=AFN.length+LF.length,d=Math.min(S.viewed.length,AFN.length+LF.length),pf=$('pf');
+  if(pf)pf.style.width=(t>0?d/t*100:0)+'%';
+}
+
+// ── RENDER ─────────────────────────────────────────────────────────
+function _fapHasBase(){return S.access.base||S.access.admin;}
+
+function rPreviewBar(){
+  if(!S.preview||_fapHasBase())return'';
+  return`<div class="prevbar">
+    <span style="font-size:18px">👀</span>
+    <span class="prevbar-tx">Modo Prévia — ${PREVIEW_IDS.length} de ${AFN.length} fórmulas liberadas de graça</span>
+    <a href="${ckUrl('base')}" target="_blank" class="prevbar-cta" data-action="track-checkout" data-produto="base">Desbloquear tudo →</a>
+  </div>
+    <div style="margin:8px 16px 0;text-align:center"><button onclick="_fapExitPreviewToLogin()" style="background:none;border:none;color:var(--acc);font-size:14px;font-weight:700;text-decoration:underline;cursor:pointer;padding:6px">Já comprou? Entre com seu e-mail</button></div>
+    ${localStorage.getItem('fap_buy_intent')?`<div onclick="_fapExitPreviewToLogin()" style="margin:8px 16px 0;padding:14px;background:#16a34a;color:#fff;border-radius:var(--r);font-size:15px;font-weight:700;text-align:center;cursor:pointer;line-height:1.35">✅ Comprou? Toque aqui e entre com o e-mail que usou na compra</div>`:''}`;
+}
+
+function render(){
+  const el=M();
+  let html='';
+  const GK={limpeza:'limp','limp-cat':'limp','limp-form':'limp',legal:'leg','legal-cap':'leg'};
+  const gk=GK[S.view];
+  if(gk&&!S.access[gk])S.view=(gk==='limp'?'limpeza':'legal');
+  const gating=gk&&S.access[gk]&&LOADED[gk]!=='ok';
+  switch(gating?'__loading':S.view){
+    case'__loading': html=rLoading();break;
+    case'home':      html=rHome();break;
+    case'auto':      html=rAuto();break;
+    case'auto-cat':  html=rAutoCat();break;
+    case'auto-form': html=rForm(AF,S.autoForm,'auto-cat',S.autoCat,'auto');break;
+    case'limpeza':   html=rLimpeza();break;
+    case'limp-cat':  html=rLimpCat();break;
+    case'limp-form': html=rForm(LF,S.limpForm,'limp-cat',S.limpCat,'limpeza');break;
+    case'legal':     html=rLegal();break;
+    case'legal-cap': html=rLegalCap();break;
+    case'search':    html=rSearchShell();break;
+    case'favs':      html=rFavs();break;
+    case'gloss':     html=rGloss();break;
+    case'supp':      html=rSupp();break;
+  }
+  el.innerHTML=rPreviewBar()+html;
+  if(S.view==='search')bindSearch();
+  bindCommon();updProg();
+}
+
+// ── HOME ───────────────────────────────────────────────────────────
+function rHome(){
+  const A=S.access;
+  const PRICE={limp:'R$ 9,90',leg:'R$ 6,90'};
+  const card=(p)=>{
+    const unl=!!A[p.key];
+    const previewable=(p.key==='base'&&S.preview&&!unl);
+    const action=unl?'go':(previewable?'go':'upsell');
+    const badgeHtml=unl?'<span class="pc-badge unl">✓ INCLUSO</span>'
+      :(previewable?'<span class="pc-badge lk2">👀 PRÉVIA GRÁTIS</span>':`<span class="pc-badge lk2">🔒 ${PRICE[p.key]||''}</span>`);
+    const hint=unl?'':(previewable
+      ?'<div class="pc-hint" style="color:var(--grn)">👆 Toque para ver receitas grátis</div>'
+      :'<div class="pc-hint">👆 Toque para comprar e liberar na hora</div>');
+    return`<div class="pc${unl?'':' lk'}" data-action="${action}" data-v="${p.v}" data-key="${p.key}">
+      <div class="pc-icon">${p.icon}</div>
+      <div class="pc-body">
+        <div class="pc-name">${p.name}</div>
+        <div class="pc-sub">${p.sub}</div>
+        ${hint}
+      </div>
+      ${badgeHtml}
+    </div>`;
+  };
+  const kit=[{icon:'⚡',name:'Fórmula Auto Pro Essencial',sub:'20 receitas automotivas passo a passo',v:'auto',key:'base'}].map(card).join('');
+  const extras=[
+    {icon:'🌿',name:'50 Fórmulas de Limpeza',sub:'Dobre seu catálogo: amaciante, detergente, desinfetante e muito mais.',v:'limpeza',key:'limp'},
+    {icon:'⚖️',name:'Guia de Legalização',sub:'Venda sem medo. Tudo o que você precisa para estar na lei.',v:'legal',key:'leg'},
+  ].map(card).join('');
+
+  const utils=`
+  <div class="uc" data-action="go" data-v="gloss"><div class="uc-icon">📚</div><div class="uc-name">Glossário</div><div class="uc-sub">${GL.length} insumos com preço</div></div>
+  <div class="uc" data-action="go" data-v="supp"><div class="uc-icon">📍</div><div class="uc-name">Fornecedores</div><div class="uc-sub">Nacional + Online</div></div>`;
+  const bons=BO.map(b=>`<a href="${b.url}" target="_blank" class="bc"><div class="bic">${b.icon}</div><div class="bn">${b.name}</div><div class="bd">${b.desc}</div><span class="bl">Acessar →</span></a>`).join('');
+
+  return`
+  <div class="wb">
+    <div class="wg">✦ Bem-vindo ao</div>
+    <div class="wt">Fórmula Auto Pro Essencial</div>
+    <div class="wx">Sou João Silva, Engenheiro Químico com mais de 10 anos de experiência em formulação. Este guia foi criado para você dar o primeiro passo: produzir com qualidade e vender com confiança.</div>
+  </div>
+  <div class="sl">Seu Kit</div>
+  <div class="pg">${kit}</div>
+  <div class="sl">Complete seu kit</div>
+  <div class="pg">${extras}</div>
+  ${rUpsell()}
+  <div class="sl">Ferramentas</div>
+  <div class="ug">${utils}</div>
+  <div class="sl">Seu Bônus</div>
+  <div class="bg">${bons}</div>
+  <div style="padding:14px 16px;text-align:center">
+    <button onclick="openInst()" style="background:rgba(232,114,12,.12);border:1px solid rgba(232,114,12,.25);color:var(--acc);padding:10px 16px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;width:100%">📲 Instalar no Celular</button>
+    ${S.preview?'<button onclick="_fapExitPreviewToLogin()" style="background:none;border:none;color:var(--mut);padding:12px 4px 0;font-size:12px;text-decoration:underline;cursor:pointer;width:100%">Já comprou? Entrar com seu email</button>':''}
+    <div style="margin-top:10px;font-size:11px;color:var(--dim)">João Silva · Engenheiro Químico · (81) 3196-3052</div>
+  </div>`;
+}
+
+// ── UPSELL: mini carta de vendas da versão Completa (só para quem já tem o Essencial) ──
+function rUpsell(){
+  const A=S.access;
+  if(!A.base)return'';
+  if(A.upg){
+    return`<div style="margin:20px 16px 0;padding:18px;background:linear-gradient(135deg,var(--card),rgba(22,163,74,.10));border:1.5px solid var(--grn);border-radius:var(--rl);text-align:center">
+      <div style="font-size:11px;font-weight:800;color:var(--grn);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">✓ Upgrade liberado</div>
+      <div style="font-size:16px;font-weight:800;margin-bottom:6px">Você tem a Fórmula Auto Pro Completa</div>
+      <div style="font-size:12px;color:var(--mut);line-height:1.5;margin-bottom:14px">As 80 fórmulas e as ferramentas bônus estão no app completo. Entre com o mesmo e-mail da compra.</div>
+      <a href="${FULL_URL}" target="_blank" style="display:inline-block;background:linear-gradient(135deg,var(--acc),var(--acd));color:#fff;padding:13px 24px;border-radius:12px;font-weight:800;font-size:14px;text-decoration:none">Abrir a Fórmula Auto Pro Completa →</a>
+    </div>`;
+  }
+  const li=(t)=>`<div style="display:flex;gap:10px;align-items:flex-start;padding:6px 0;font-size:13px;line-height:1.5;color:var(--txt)"><span style="flex-shrink:0">✅</span><span>${t}</span></div>`;
+  return`<div style="margin:22px 16px 0;padding:22px 18px;background:linear-gradient(160deg,var(--card),rgba(232,114,12,.10));border:1.5px solid var(--acc);border-radius:var(--rl)">
+    <div style="font-size:11px;font-weight:800;color:var(--acl);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">🚀 Próximo nível</div>
+    <div style="font-size:20px;font-weight:800;line-height:1.25;margin-bottom:10px">Quer se profissionalizar de verdade?</div>
+    <p style="font-size:13px;line-height:1.65;color:var(--mut);margin-bottom:12px">Com as 20 receitas do Essencial você já consegue começar. Mas quem fatura de verdade com estética automotiva vende uma <b style="color:var(--txt)">linha completa</b> — do carro de passeio ao caminhão. É isso que a <b style="color:var(--txt)">Fórmula Auto Pro Completa</b> entrega:</p>
+    ${li('<b>80 fórmulas profissionais</b> — são 60 a mais do que no Essencial, para você ter catálogo para vender mais e para mais tipos de cliente')}
+    ${li('<b>Linha Pesada</b>: desengraxantes, limpa-baú, limpa-chassi, limpa-motor e mais — para caminhões, frotas e oficinas, que compram em volume')}
+    ${li('<b>Mais opções em todas as categorias</b>: limpeza externa, acabamento e brilho, limpeza interna e aromatização')}
+    ${li('<b>PDF completo do guia</b> para baixar e consultar quando quiser')}
+    ${li('<b>4 ferramentas bônus</b>: Gerador de Rótulo, Precificação Automática, Calculadora de Lucro e Gerador de Ficha Técnica')}
+    <div style="margin-top:16px;padding:16px;background:var(--bg2);border:1px dashed var(--acc);border-radius:var(--r);text-align:center">
+      <div style="font-size:12px;color:var(--mut);line-height:1.5">Você já investiu R$ 14,90. Pague só a diferença:</div>
+      <div style="font-size:34px;font-weight:900;color:var(--acl);margin:6px 0 2px">R$ 27,00</div>
+      <div style="font-size:11px;color:var(--dim)">pagamento único · liberado no mesmo e-mail da sua compra</div>
+    </div>
+    <a href="${ckUrl('upg')}" target="_blank" data-action="track-checkout" data-produto="upg" style="display:block;margin-top:14px;background:linear-gradient(135deg,var(--acc),var(--acd));color:#fff;padding:16px;border-radius:12px;font-weight:800;font-size:15px;text-align:center;text-decoration:none">Quero a Completa por R$ 27,00 →</a>
+    <div style="margin-top:12px;font-size:10px;color:var(--dim);text-align:center;line-height:1.5">Material educativo. Não há garantia de resultados financeiros.</div>
+  </div>`;
+}
+
+
+// ── AUTO PRO ───────────────────────────────────────────────────────
+function rAuto(){
+  const hasAccess=_fapHasBase();
+  if(!hasAccess&&!S.preview)return rLocked('⚡','Fórmula Auto Pro Essencial',ckUrl('base'),'R$14,90','base');
+  const viewed=AFN.filter(f=>isVd(f.id)).length;
+  const cats=AC.map(ch=>{
+    const n=AFN.filter(f=>f.cat===ch.id).length;
+    const nFree=AF.filter(f=>f.cat===ch.id&&PREVIEW_IDS.includes(f.id)).length;
+    const ckTxt=hasAccess?`${n} fórmulas`:(nFree>0?`🔓 ${nFree} grátis · ${n} fórmulas`:`🔒 ${n} fórmulas`);
+    return`<div class="cc" data-action="auto-cat" data-cat="${ch.id}">
+      <span class="ci">${ch.icon}</span>
+      <div class="cn">${ch.name}</div>
+      <div class="ck">${ckTxt}</div>
+    </div>`;
+  }).join('');
+  const dlWrap='';
+  return`
+  <div class="sah">
+    <div class="bb" data-action="go" data-v="home">‹</div>
+    <div class="sat"><div class="sat-icon">⚡</div><div class="sat-name">Fórmula Auto Pro Essencial</div><div class="sat-sub">${AFN.length} fórmulas · ${viewed} visualizadas</div></div>
+  </div>
+  ${dlWrap}
+  <div style="padding:0 16px 8px"><div class="sl" style="margin:8px 0 10px">Categorias</div></div>
+  <div class="cg" style="padding:0 16px 16px">${cats}</div>`;
+}
+
+function rAutoCat(){
+  const hasAccess=_fapHasBase();
+  const ch=AC.find(c=>c.id===S.autoCat)||AC[0];
+  const fs=AF.filter(f=>f.cat===S.autoCat);
+  const items=fs.map(f=>{
+    const isFree=PREVIEW_IDS.includes(f.id);
+    const locked=!hasAccess&&!isFree;
+    const tag=locked?' <span style="color:var(--acc);font-size:11px">🔒</span>':(!hasAccess&&isFree?' <span style="color:var(--grn);font-size:10px;font-weight:800;letter-spacing:.5px">· GRÁTIS</span>':'');
+    return`
+  <div class="fi${isFav(f.id)?' sv':''}${isVd(f.id)?' vd':''}${locked?' lk':''}" data-action="auto-form" data-id="${f.id}">
+    <div class="fic">
+      <div class="fit">${f.title}${tag}</div>
+      <div class="fid">${f.desc}</div>
+    </div>
+    <div class="far">›</div>
+  </div>`;}).join('');
+  return`
+  <div class="sah">
+    <div class="bb" data-action="go" data-v="auto">‹</div>
+    <div class="sat"><div class="sat-icon">${ch.icon}</div><div class="sat-name">${ch.name}</div><div class="sat-sub">${fs.filter(f=>!f.extra).length} de ${ch.total} fórmulas</div></div>
+  </div>
+  <div class="pb"><div class="pf" id="pf" style="width:0%"></div></div>
+  <div class="fl">${items}</div>`;
+}
+
+// ── LIMPEZA ───────────────────────────────────────────────────────
+function rLimpeza(){
+  if(!S.access.limp&&!S.access.admin)return rLocked('🌿','50 Fórmulas de Limpeza',ckUrl('limp'),'R$9,90','limp');
+  const viewed=LF.filter(f=>isVd(f.id)).length;
+  const cats=LC.map(ch=>{
+    const n=LF.filter(f=>f.cat===ch.id).length;
+    return`<div class="cc" data-action="limp-cat" data-cat="${ch.id}">
+      <span class="ci">${ch.icon}</span>
+      <div class="cn">Linha ${ch.name}</div>
+      <div class="ck">${n} de ${ch.total} fórmulas</div>
+    </div>`;
+  }).join('');
+  return`
+  <div class="sah">
+    <div class="bb" data-action="go" data-v="home">‹</div>
+    <div class="sat"><div class="sat-icon">🌿</div><div class="sat-name">50 Fórmulas de Limpeza</div><div class="sat-sub">${LF.length} fórmulas · ${viewed} visualizadas</div></div>
+  </div>
+  <div class="dl-wrap"><button class="dl-btn" data-action="download-pdf" data-produto="limp">📥 Baixar Guia Completo (PDF)</button></div>
+  <div style="padding:0 16px 8px"><div class="sl" style="margin:8px 0 10px">Categorias</div></div>
+  <div class="cg" style="padding:0 16px 16px">${cats}</div>`;
+}
+
+function rLimpCat(){
+  const ch=LC.find(c=>c.id===S.limpCat)||LC[0];
+  const fs=LF.filter(f=>f.cat===S.limpCat);
+  const items=fs.map(f=>`
+  <div class="fi${isFav(f.id)?' sv':''}${isVd(f.id)?' vd':''}" data-action="limp-form" data-id="${f.id}">
+    <div class="fic">
+      <div class="fit">${f.title}</div>
+      <div class="fid">${f.desc}</div>
+    </div>
+    <div class="far">›</div>
+  </div>`).join('');
+  return`
+  <div class="sah">
+    <div class="bb" data-action="go" data-v="limpeza">‹</div>
+    <div class="sat"><div class="sat-icon">${ch.icon}</div><div class="sat-name">Linha ${ch.name}</div><div class="sat-sub">${fs.length} de ${ch.total} fórmulas</div></div>
+  </div>
+  <div class="pb"><div class="pf" id="pf" style="width:0%"></div></div>
+  <div class="fl">${items}</div>`;
+}
+
+// ── SHARED FORMULA DETAIL ──────────────────────────────────────────
+function rFormTeaser(f,backView,backCat){
+  return`
+  <div class="fh">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+      <div class="bb" data-action="back-cat" data-view="${backView}" data-cat="${backCat}">‹</div>
+      <div style="flex:1"></div>
+      <div style="font-size:10px;color:var(--dim)">${f.catIcon||''} ${f.catName||''}</div>
+    </div>
+    <div class="ftm">${f.title}</div>
+    <div class="fdm">${f.desc}</div>
+  </div>
+  <div class="sb"><div class="bt">Onde Usar</div><div class="ul2">${(f.uses||[]).map(u=>`<span class="ut2">${u}</span>`).join('')}</div></div>
+  <div class="sb"><div class="bt">Função dos Ingredientes</div><div class="ifl">${(f.ingFunc||[]).slice(0,2).map(([n,d])=>`<div class="ifi"><div class="ifn">${n}</div><div class="ifd">${d}</div></div>`).join('')}</div></div>
+  <div style="margin:16px;padding:24px 18px;background:linear-gradient(135deg,var(--card),rgba(232,114,12,.08));border:1px solid var(--acc);border-radius:var(--rl);text-align:center">
+    <div style="font-size:30px;margin-bottom:8px">🔒</div>
+    <div style="font-size:15px;font-weight:800;margin-bottom:6px">Fórmula completa, modo de preparo, diluição e argumento de venda disponíveis após a compra</div>
+    <div style="font-size:12px;color:var(--mut);margin-bottom:16px;line-height:1.5">Desbloqueie as 20 receitas completas do Fórmula Auto Pro Essencial, com quantidades exatas, passo a passo e custo por litro.</div>
+    <a href="${ckUrl('base')}" target="_blank" data-action="track-checkout" data-produto="base" style="display:inline-block;background:linear-gradient(135deg,var(--acc),var(--acd));color:#fff;padding:14px 26px;border-radius:var(--r);font-size:14px;font-weight:700;text-decoration:none">🔓 Desbloquear por R$41,90</a>
+  </div>`;
+}
+
+function rForm(db,id,backView,backCat,parentView){
+  const f=db.find(x=>x.id===id);
+  if(!f)return rHome();
+  const previewLocked=parentView==='auto'&&!_fapHasBase()&&!PREVIEW_IDS.includes(f.id);
+  if(previewLocked)return rFormTeaser(f,backView,backCat);
+  if(!f.formula&&!f.prep)return rLoading();
+  markVd(f.id);
+  const fv=isFav(f.id);
+  const previewFree=parentView==='auto'&&!_fapHasBase()&&PREVIEW_IDS.includes(f.id);
+  const freeBanner=previewFree?`
+  <div style="margin:16px;padding:18px;background:linear-gradient(135deg,var(--card),rgba(232,114,12,.08));border:1px solid var(--acc);border-radius:var(--rl);text-align:center">
+    <div style="font-size:11px;font-weight:800;color:var(--acl);letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px">👀 Fórmula de demonstração gratuita</div>
+    <div style="font-size:12px;color:var(--mut);margin-bottom:14px">Essa é 1 das 20 receitas completas. Desbloqueie o acesso total agora.</div>
+    <a href="${ckUrl('base')}" target="_blank" data-action="track-checkout" data-produto="base" style="display:inline-block;background:linear-gradient(135deg,var(--acc),var(--acd));color:#fff;padding:12px 24px;border-radius:var(--r);font-size:13px;font-weight:700;text-decoration:none">🔓 Desbloquear 80 fórmulas — R$41,90</a>
+  </div>`:'';
+  const tbl=`<table class="ft"><thead><tr><th>Ingrediente</th><th>Quantidade</th></tr></thead><tbody>${(f.formula||[]).map(([i,q])=>`<tr><td>${i}</td><td>${q}</td></tr>`).join('')}</tbody></table>`;
+  const ift=`<div class="ifl">${(f.ingFunc||[]).map(([n,d])=>`<div class="ifi"><div class="ifn">${n}</div><div class="ifd">${d}</div></div>`).join('')}</div>`;
+  const prep=`<div class="pl">${(f.prep||[]).map((s,i)=>`<div class="ps"><div class="pn">${i+1}</div><div class="ptx">${s}</div></div>`).join('')}</div>`;
+  const dil=`<table class="dt"><thead><tr><th>Situação</th><th>Diluição</th><th>Exemplo</th></tr></thead><tbody>${(f.dil||[]).map(([s,r,e])=>`<tr><td>${s}</td><td><span class="dr">${r}</span></td><td><span class="de">${e}</span></td></tr>`).join('')}</tbody></table>`;
+  const caut=(f.caut||[]).map(c=>`<div class="wi"><div class="wic">⚠️</div><div class="wtx">${c}</div></div>`).join('');
+  const errs=(f.err||[]).map(e=>`<div class="wi"><div class="wic">❌</div><div class="wtx">${e}</div></div>`).join('');
+  return`
+  <div class="fh">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+      <div class="bb" data-action="back-cat" data-view="${backView}" data-cat="${backCat}">‹</div>
+      <div style="flex:1"></div>
+      <div style="font-size:10px;color:var(--dim)">${f.catIcon||''} ${f.catName||''}</div>
+    </div>
+    <div class="ftm">${f.title}</div>
+    <div class="fdm">${f.desc}</div>
+    <button class="fav-btn${fv?' on':''}" data-action="fav" data-id="${f.id}">
+      ${fv?'♥  Salvo nos favoritos':'♡  Salvar nos favoritos'}
+    </button>
+  </div>
+  <div class="sb"><div class="bt">Onde Usar</div><div class="ul2">${(f.uses||[]).map(u=>`<span class="ut2">${u}</span>`).join('')}</div></div>
+  <div class="sb"><div class="bt">Fórmula para 100 Litros</div>${tbl}</div>
+  <div class="sb"><div class="bt">Função dos Ingredientes</div>${ift}</div>
+  <div class="sb"><div class="bt">Modo de Preparo</div>${prep}</div>
+  <div class="sb"><div class="bt">Diluição</div>${dil}</div>
+  ${f.app?`<div class="sb"><div class="bt">Como Aplicar</div><p class="ptx" style="font-size:13px;line-height:1.7;color:var(--mut)">${f.app}</p></div>`:''}
+  ${caut?`<div class="sb"><div class="bt">Cuidados</div><div class="wl">${caut}</div></div>`:''}
+  ${errs?`<div class="sb"><div class="bt">Erros Comuns</div><div class="wl">${errs}</div></div>`:''}
+  <div class="sb"><div class="bt">Fragrância, Cor e Embalagem</div>
+    <div class="ig">
+      ${f.frag?`<div class="ip"><div class="ipl">Fragrâncias</div><div class="ipv">${f.frag}</div></div>`:''}
+      ${f.cor?`<div class="ip"><div class="ipl">Cor</div><div class="ipv">${f.cor}</div></div>`:''}
+      ${f.emb?`<div class="ip" style="grid-column:span 2"><div class="ipl">Embalagem</div><div class="ipv">${f.emb}</div></div>`:''}
+    </div>
+  </div>
+  ${f.venda?`<div class="sb"><div class="bt">Argumento de Venda e Custo</div><div class="sales"><div class="sq">"${f.venda}"</div><div class="cn2">${f.custo||''}</div></div></div>`:''}
+  ${freeBanner}`;
+}
+
+// ── LEGALIZAÇÃO ────────────────────────────────────────────────────
+function rLegal(){
+  if(!S.access.leg&&!S.access.admin)return rLocked('⚖️','Guia de Legalização',ckUrl('leg'),'R$6,90','leg');
+  const items=LG.map(cap=>`
+  <div class="lg-card" data-action="leg-cap" data-id="${cap.id}">
+    <div class="lg-num">${cap.num}</div>
+    <div class="lg-body">
+      <div class="lg-title">${cap.icon} ${cap.title}</div>
+      <div class="lg-sub">${cap.desc}</div>
+    </div>
+    <div style="color:var(--dim);font-size:18px;flex-shrink:0">›</div>
+  </div>`).join('');
+  return`
+  <div class="sah">
+    <div class="bb" data-action="go" data-v="home">‹</div>
+    <div class="sat"><div class="sat-icon">⚖️</div><div class="sat-name">Guia de Legalização</div><div class="sat-sub">9 capítulos — venda do jeito certo</div></div>
+  </div>
+  <div class="dl-wrap"><button class="dl-btn" data-action="download-pdf" data-produto="leg">📥 Baixar Guia Completo (PDF)</button></div>
+  <div class="fl">${items}</div>`;
+}
+
+function rLegalCap(){
+  const cap=LG.find(x=>x.id===S.legCap)||LG[0];
+  const lines=cap.content.split('\n').map(l=>{
+    if(!l.trim())return'<div style="height:6px"></div>';
+    if(l.startsWith('•')||l.startsWith('✅')||l.startsWith('❌')||l.startsWith('☐'))
+      return`<div style="padding:3px 0 3px 4px;font-size:13px;line-height:1.7">${l}</div>`;
+    if(l.match(/^\d+\./)||l.match(/^[A-Z]{2,}/))
+      return`<div style="font-weight:700;font-size:13px;margin-top:8px;margin-bottom:2px;color:var(--txt)">${l}</div>`;
+    return`<p style="font-size:13px;line-height:1.7;color:var(--mut)">${l}</p>`;
+  }).join('');
+  return`
+  <div class="sah">
+    <div class="bb" data-action="go" data-v="legal">‹</div>
+    <div class="sat"><div style="font-size:10px;color:var(--blu);font-weight:700">Capítulo ${cap.num}</div><div class="sat-name" style="font-size:15px">${cap.title}</div></div>
+  </div>
+  <div style="padding:16px">
+    <div style="background:linear-gradient(135deg,var(--card),rgba(59,130,246,.06));border:1px solid var(--brd);border-left:3px solid var(--blu);border-radius:var(--r);padding:14px;margin-bottom:16px">
+      <div style="font-size:10px;color:var(--blu);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">Resumo</div>
+      <div style="font-size:13px;color:var(--mut);line-height:1.6">${cap.desc}</div>
+    </div>
+    ${lines}
+    <div style="margin-top:20px">
+      <button class="dl-btn" data-action="download-pdf" data-produto="leg">📥 Baixar Guia Completo em PDF</button>
+    </div>
+  </div>`;
+}
+
+// ── LOCKED STATE ──────────────────────────────────────────────────
+function rLocked(icon,name,url,price,prodKey){
+  return`
+  <div class="sah">
+    <div class="bb" data-action="go" data-v="home">‹</div>
+    <div class="sat"><div class="sat-icon">${icon}</div><div class="sat-name">${name}</div></div>
+  </div>
+  <div class="es">
+    <div class="ei">🔒</div>
+    <div class="et">Conteúdo Bloqueado</div>
+    <div class="ex2">Adquira ${name} para desbloquear todo o conteúdo.</div>
+    <a href="${url}" target="_blank" data-action="track-checkout" data-produto="${prodKey||''}" style="display:inline-block;margin-top:20px;background:linear-gradient(135deg,var(--acc),var(--acd));color:#fff;padding:13px 28px;border-radius:var(--r);font-size:14px;font-weight:700;text-decoration:none">
+      🔓 Desbloquear por ${price}
+    </a>
+  </div>`;
+}
+
+// ── SEARCH (RTL FIX — never re-render input) ──────────────────────
+function rSearchShell(){
+  return`
+  <div id="search-wrap" style="position:relative;padding:14px 16px;border-bottom:1px solid var(--brd)">
+    <span id="search-icon">🔍</span>
+    <input type="text" id="search-inp" dir="ltr" autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" lang="pt-BR"
+      placeholder="Buscar fórmulas, ingredientes..." 
+      style="direction:ltr;text-align:left;unicode-bidi:embed">
+  </div>
+  <div id="search-results">
+    <div class="es"><div class="ei">🔍</div><div class="et">Digite para buscar</div><div class="ex2">Busque por nome, ingrediente ou categoria</div></div>
+  </div>`;
+}
+function bindSearch(){
+  const inp=$('search-inp');
+  if(!inp)return;
+  inp.focus();
+  // Restore previous search
+  if(S.searchQ){inp.value=S.searchQ;doSearch(S.searchQ);}
+  inp.addEventListener('input',e=>{
+    const q=e.target.value;
+    S.searchQ=q;
+    doSearch(q);
+  });
+  inp.addEventListener('keydown',e=>{
+    // Force cursor to end on each keystroke (RTL fix)
+    requestAnimationFrame(()=>{
+      if(inp.selectionStart!==inp.value.length){
+        // Don't force if user is editing middle of text
+      }
+    });
+  });
+}
+function doSearch(q){
+  const el=$('search-results');
+  if(!el)return;
+  const qn=q.toLowerCase().trim();
+  if(qn.length<2){
+    el.innerHTML='<div class="es"><div class="ei">🔍</div><div class="et">Digite para buscar</div><div class="ex2">Mínimo 2 caracteres</div></div>';
+    return;
+  }
+  const all=[...AF,...LF];
+  const rs=all.filter(f=>
+    f.title.toLowerCase().includes(qn)||
+    f.desc.toLowerCase().includes(qn)||
+    (f.catName||'').toLowerCase().includes(qn)||
+    (f.uses||[]).some(u=>u.toLowerCase().includes(qn))
+  );
+  if(!rs.length){
+    el.innerHTML='<div class="es"><div class="ei">😔</div><div class="et">Nenhum resultado</div><div class="ex2">Tente outros termos</div></div>';
+    return;
+  }
+  el.innerHTML=`<div class="fl">${rs.map(f=>{
+    const isAuto=AF.includes(f);
+    const isLimp=LF.includes(f);const act=isLimp?'limp-form':'auto-form';
+    const catKey=isAuto?'autoCat':'limpCat';
+    return`<div class="fi${isFav(f.id)?' sv':''}" data-action="${act}" data-id="${f.id}" data-cat="${f.cat}">
+      <div class="fic">
+        <div style="font-size:10px;color:var(--acc);margin-bottom:2px;font-weight:700">${f.catIcon||''} ${f.catName||''}</div>
+        <div class="fit">${f.title}</div>
+        <div class="fid">${f.desc}</div>
+      </div>
+      <div class="far">›</div>
+    </div>`;
+  }).join('')}</div>`;
+  bindCommon();
+}
+
+// ── FAVORITES ─────────────────────────────────────────────────────
+function rFavs(){
+  const all=[...AF,...LF];
+  const fs=all.filter(f=>isFav(f.id));
+  if(!fs.length)return`<div class="es"><div class="ei">♡</div><div class="et">Nenhum favorito</div><div class="ex2">Salve as fórmulas que você mais usa para acessar rapidamente.</div></div>`;
+  return`
+  <div style="padding:12px 16px 4px;font-size:12px;color:var(--mut)">${fs.length} fórmula${fs.length!==1?'s':''} salva${fs.length!==1?'s':''}</div>
+  <div class="fl">${fs.map(f=>{
+    const isAuto=AF.includes(f);
+    const isLimp=LF.includes(f);const act=isLimp?'limp-form':'auto-form';
+    return`<div class="fi sv" data-action="${act}" data-id="${f.id}" data-cat="${f.cat}">
+      <div class="fic">
+        <div style="font-size:10px;color:var(--acc);margin-bottom:2px;font-weight:700">${f.catIcon||''} ${f.catName||''}</div>
+        <div class="fit">${f.title}</div>
+        <div class="fid">${f.desc}</div>
+      </div>
+      <div class="far">›</div>
+    </div>`;
+  }).join('')}</div>`;
+}
+
+// ── GLOSSARY ──────────────────────────────────────────────────────
+function rGloss(){
+  return`
+  <div class="sah">
+    <div class="bb" data-action="go" data-v="home">‹</div>
+    <div class="sat"><div class="sat-icon">📚</div><div class="sat-name">Glossário de Insumos</div><div class="sat-sub">${GL.length} ingredientes com função e preço</div></div>
+  </div>
+  <div class="gs"><input type="text" id="gi" dir="ltr" autocomplete="off" placeholder="Filtrar ingredientes..."></div>
+  <div class="gw"><table class="gt"><thead><tr><th>Insumo</th><th>Uso</th><th>Função Principal</th><th>Substituto</th><th>Preço</th></tr></thead><tbody id="gb">
+  ${GL.map(([n,u,fn,sub,p])=>`<tr><td><div class="gn">${n}</div></td><td class="gm">${u}</td><td class="gm">${fn}</td><td class="gm">${sub}</td><td class="gp">${p}</td></tr>`).join('')}
+  </tbody></table></div>`;
+}
+
+// ── SUPPLIERS ─────────────────────────────────────────────────────
+function rSupp(){
+  let h=`<div class="sah"><div class="bb" data-action="go" data-v="home">‹</div><div class="sat"><div class="sat-icon">📍</div><div class="sat-name">Fornecedores</div><div class="sat-sub">Nacional + Marketplaces + Online</div></div></div>`;
+  for(const[r,s] of Object.entries(SU)){
+    h+=`<div class="sr">${r}</div>`;
+    for(const[n,c,co] of s)h+=`<div class="sc"><div class="sn">${n}</div><div class="sct">📍 ${c}</div><div class="sco">${co}</div></div>`;
+  }
+  return h;
+}
+
+// ── EVENT BINDING ──────────────────────────────────────────────────
+function bindCommon(){
+  document.querySelectorAll('[data-action]').forEach(el=>{
+    // Avoid double-binding
+    if(el._bound)return;
+    el._bound=true;
+    el.addEventListener('click',handleClick);
+  });
+  const gi=$('gi');
+  if(gi)gi.addEventListener('input',e=>{
+    const q=e.target.value.toLowerCase();
+    document.querySelectorAll('#gb tr').forEach(r=>{
+      r.style.display=r.textContent.toLowerCase().includes(q)?'':'none';
+    });
+  });
+}
+
+function handleClick(e){
+  const el=e.currentTarget,ac=el.dataset.action;
+  switch(ac){
+    case'go': go(el.dataset.v);break;
+    case'upsell': {
+      const key=el.dataset.key;
+      if(key&&!S.access[key]&&CHECKOUT_URLS[key]){
+        _fapPixel('InitiateCheckout',{content_name:key});
+        window.open(ckUrl(key),'_blank');
+      }
+      break;
+    }
+    case'track-checkout': {
+      _fapPixel('InitiateCheckout',{content_name:el.dataset.produto||''});
+      try{localStorage.setItem('fap_buy_intent','1');}catch(e){}
+      setTimeout(function(){if(S.preview)render();},400);
+      break; // navegação padrão do <a href target=_blank> acontece normalmente
+    }
+    case'download-pdf': {
+      const produto=el.dataset.produto;
+      const hasAcc=S.access[produto]||S.access.admin;
+      if(!hasAcc){
+        alert('Esse PDF fica disponível depois da compra. Desbloqueie o acesso completo para baixar.');
+        return;
+      }
+      const prevTxt=el.textContent;
+      el.textContent='Baixando...';el.disabled=true;
+      const email=localStorage.getItem('fap_email')||'';
+      const tk='';
+      fetch('/api/download?produto='+encodeURIComponent(produto)+'&email='+encodeURIComponent(email)+(tk?'&token='+tk:''),{cache:'no-store'})
+        .then(function(r){ if(!r.ok)throw new Error('fail'); return r.blob(); })
+        .then(function(blob){
+          const url=URL.createObjectURL(blob);
+          const a=document.createElement('a');
+          a.href=url;a.download=PDF_NAMES[produto]||'documento.pdf';
+          document.body.appendChild(a);a.click();a.remove();
+          setTimeout(function(){URL.revokeObjectURL(url);},2000);
+          el.textContent=prevTxt;el.disabled=false;
+        })
+        .catch(function(){
+          alert('Não foi possível baixar agora. Tente novamente ou fale com o suporte.');
+          el.textContent=prevTxt;el.disabled=false;
+        });
+      break;
+    }
+    case'auto-cat': go('auto-cat',{autoCat:el.dataset.cat});break;
+    case'auto-form': go('auto-form',{autoForm:el.dataset.id,autoCat:el.dataset.cat||S.autoCat});break;
+    case'limp-cat': go('limp-cat',{limpCat:el.dataset.cat});break;
+    case'limp-form': go('limp-form',{limpForm:el.dataset.id,limpCat:el.dataset.cat||S.limpCat});break;
+    case'leg-cap': go('legal-cap',{legCap:el.dataset.id});break;
+    case'back-cat': go(el.dataset.view,{autoCat:el.dataset.cat,limpCat:el.dataset.cat});break;
+    case'fav': togFav(el.dataset.id,e);break;
+    case'ip-tab': S.instTab=el.dataset.tab;S._instTabManual=true;renderInstTabs();break;
+  }
+}
+
+// ── INSTALL PROMPT ─────────────────────────────────────────────────
+function openInst(){
+  // Detecta o sistema automaticamente pra já abrir na aba certa
+  if(!S._instTabManual){
+    const ua=navigator.userAgent||'';
+    S.instTab=/Android/i.test(ua)?'and':'ios';
+  }
+  $('ip').classList.add('open');renderInstTabs();
+}
+function closeInst(){$('ip').classList.remove('open');}
+
+async function installNativo(){
+  if(!dP)return;
+  dP.prompt();
+  const escolha=await dP.userChoice;
+  if(escolha.outcome==='accepted'){
+    closeInst();
+  }
+  dP=null;
+}
+
+function detectaNavegadorApp(){
+  const ua=navigator.userAgent||'';
+  const isInstagram=/Instagram/i.test(ua);
+  const isFacebook=/FBAN|FBAV|FB_IAB/i.test(ua);
+  const isWhatsApp=/WhatsApp/i.test(ua);
+  const isLine=/Line\//i.test(ua);
+  const isTikTok=/TikTok|BytedanceWebview/i.test(ua);
+  if(isInstagram)return'Instagram';
+  if(isFacebook)return'Facebook';
+  if(isWhatsApp)return'WhatsApp';
+  if(isTikTok)return'TikTok';
+  if(isLine)return'Line';
+  return null;
+}
+
+function renderInstTabs(){
+  const box=$('ip-box');
+  if(!box)return;
+
+  // Se o navegador oferece instalação nativa (Android/Chrome/Edge), mostra botão de 1 toque
+  if(dP){
+    box.innerHTML=`
+    <div class="ip-title">📲 Instalar no Celular</div>
+    <div class="ip-sub">Acesse offline, sem internet, igual a um app</div>
+    <div style="text-align:center;padding:24px 0 8px">
+      <div style="font-size:44px;margin-bottom:14px">⚡</div>
+      <p style="font-size:13px;color:var(--mut);margin-bottom:18px">Seu navegador já suporta instalação com 1 toque.</p>
+    </div>
+    <button class="ip-close" style="background:linear-gradient(135deg,var(--acc),var(--acd));color:#fff;border:none;font-weight:700;margin-bottom:10px" onclick="installNativo()">📲 Instalar Agora</button>
+    <button class="ip-close" onclick="closeInst()">Agora não</button>`;
+    return;
+  }
+
+  // Sem prompt nativo disponível — mostra passo a passo (obrigatório no iPhone/Safari)
+  const ios=S.instTab==='ios';
+  const appDetectado=detectaNavegadorApp();
+  const avisoAppInterno=(ios&&appDetectado)?`
+    <div style="background:rgba(232,114,12,.12);border:1px solid var(--acc);border-radius:10px;padding:12px 14px;margin-bottom:16px;text-align:left">
+      <div style="font-size:12px;font-weight:800;color:var(--acl);margin-bottom:6px">⚠️ Você está no navegador do ${appDetectado}</div>
+      <div style="font-size:12px;color:var(--txt);line-height:1.5">O ${appDetectado} não permite instalar apps. Toque nos <b>●●●</b> ou <b>⋯</b> (menu, geralmente no canto superior direito) e escolha <b>"Abrir no Safari"</b> ou <b>"Abrir no navegador"</b> antes de continuar.</div>
+    </div>
+  `:'';
+  const steps=ios?[
+    'Confirme que está usando o <b>Safari</b> (obrigatório no iPhone — não funciona no navegador do WhatsApp/Instagram)',
+    'Toque no ícone <b>⬆</b> na barra inferior',
+    'Toque em <b>"Adicionar à Tela de Início"</b>',
+    'Confirme com <b>Adicionar</b> — ícone aparece na tela!',
+  ]:[
+    'Abra este link no <b>Google Chrome</b>',
+    'Toque nos 3 pontos <b>⋮</b> no canto superior',
+    'Toque em <b>"Instalar aplicativo"</b>',
+    'Confirme com <b>Instalar</b> — ícone aparece na tela!',
+  ];
+  box.innerHTML=`
+  <div class="ip-title">📲 Instalar no Celular</div>
+  <div class="ip-sub">Acesse offline, sem internet, igual a um app</div>
+  <div class="ip-tabs">
+    <div class="ip-tab${ios?' on':''}" data-action="ip-tab" data-tab="ios">🍎 iPhone</div>
+    <div class="ip-tab${!ios?' on':''}" data-action="ip-tab" data-tab="and">🤖 Android</div>
+  </div>
+  ${avisoAppInterno}
+  <div class="ip-steps">${steps.map((s,i)=>`<div class="ip-step"><div class="ip-n">${i+1}</div><div class="ip-t">${s}</div></div>`).join('')}</div>
+  <button class="ip-close" onclick="closeInst()">Entendi ✓</button>`;
+  document.querySelectorAll('[data-action="ip-tab"]').forEach(el=>{
+    el._bound=false;el.addEventListener('click',handleClick);
+  });
+}
+
+let dP=null;
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();
+  dP=e;
+  if($('ip')&&$('ip').classList.contains('open'))renderInstTabs();
+});
+window.addEventListener('appinstalled',()=>{dP=null;});
+
+// ── INIT ──────────────────────────────────────────────────────────
+
+
+
+
+function init(){
+  S.access=parseAccess();
+  setTimeout(function(){
+    var sp=document.getElementById('splash'),ap=document.getElementById('app');
+    if(sp){sp.style.opacity='0';sp.style.transition='opacity .5s';}
+    setTimeout(function(){
+      if(sp)sp.style.display='none';
+      // Sem acesso — mostra tela de login OU retoma/inicia o Modo Prévia
+      if(!S.access.base&&!S.access.admin){
+        var pParams=new URLSearchParams(location.search);
+        if(!S.preview&&pParams.get('preview')==='1'){
+          // Chegou direto de um link "conheça a plataforma" (ex: da PV) — pula a tela de escolha
+          _fapStartPreview();
+          return;
+        }
+        if(S.preview){
+          if(ap)ap.removeAttribute('hidden');
+          render();
+          _fapPixel('ViewContent',{content_name:'Fórmula Auto Pro Essencial - Modo Prévia',content_category:'preview_mode'});
+          setTimeout(_fapBgRefresh,1000);
+          return;
+        }
+        _fapShowLogin();
+        return;
+      }
+      if(ap)ap.removeAttribute('hidden');
+      _fapLoadLocked();
+      render();
+      var standalone=window.matchMedia('(display-mode:standalone)').matches||navigator.standalone;
+      if(!standalone&&!localStorage.getItem('fap_inst_shown')){
+        setTimeout(openInst,1500);
+        localStorage.setItem('fap_inst_shown','1');
+      }
+      // Background refresh — atualiza permissões sem bloquear nada
+      setTimeout(_fapBgRefresh,1000);
+    },520);
+  },2000);
+  document.querySelectorAll('.ni').forEach(el=>{
+    el.addEventListener('click',()=>{const v=el.dataset.v;if(v)go(v);});
+  });
+  $('hdr-logo')?.addEventListener('click',()=>go('home'));
+  $('hdr-s-btn')?.addEventListener('click',()=>go('search'));
+  $('hdr-f-btn')?.addEventListener('click',()=>go('favs'));
+  $('hdr-inst-btn')?.addEventListener('click',openInst);
+}
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('/sw.js').catch(()=>{});
+  });
+}
+document.addEventListener('DOMContentLoaded',init);
+
+</script>
+</body>
+</html>

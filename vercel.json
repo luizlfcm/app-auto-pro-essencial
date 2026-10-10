@@ -1,0 +1,10 @@
+{
+  "functions": {
+    "api/download.js": {
+      "includeFiles": "api/files/**"
+    },
+    "api/conteudo.js": {
+      "includeFiles": "api/files/**"
+    }
+  }
+}
