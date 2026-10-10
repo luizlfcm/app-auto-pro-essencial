@@ -425,6 +425,7 @@ const PDF_NAMES={base:'Formula-Auto-Pro-Essencial-20-Receitas.pdf',limp:'50-Form
 // Conteúdo pago NÃO vem no HTML: só é baixado da API depois de conferir o acesso do e-mail.
 const LOADED={};
 function _fapLoadLocked(){
+  _fapLoadUpg();
   var email=localStorage.getItem('fap_email')||'';
   if(!email)return;
   ['base','limp','leg'].forEach(function(k){
@@ -574,7 +575,17 @@ function rHome(){
   </div>`;
 }
 
-// ── UPSELL: mini carta de vendas da versão Completa (só para quem já tem o Essencial) ──
+// ── UPSELL: carta de vendas da versão Completa (só para quem já tem o Essencial). Preço e prazo vêm do checkout. ──
+let UPG=null;
+function _fapLoadUpg(){
+  var email=localStorage.getItem('fap_email');
+  if(!email||!S.access.base||S.access.upg)return;
+  fetch('https://pagamento.luverisgroup.com.br/api/upgrade?p=apess&email='+encodeURIComponent(email),{cache:'no-store'})
+    .then(function(r){return r.json();})
+    .then(function(d){if(d&&d.preco){UPG=d;if(S.view==='home')render();}})
+    .catch(function(){});
+}
+function _brl(v){return 'R$ '+Number(v).toFixed(2).replace('.',',');}
 function rUpsell(){
   const A=S.access;
   if(!A.base)return'';
@@ -587,25 +598,37 @@ function rUpsell(){
     </div>`;
   }
   const li=(t)=>`<div style="display:flex;gap:10px;align-items:flex-start;padding:6px 0;font-size:13px;line-height:1.5;color:var(--txt)"><span style="flex-shrink:0">✅</span><span>${t}</span></div>`;
-  return`<div style="margin:22px 16px 0;padding:22px 18px;background:linear-gradient(160deg,var(--card),rgba(232,114,12,.10));border:1.5px solid var(--acc);border-radius:var(--rl)">
-    <div style="font-size:11px;font-weight:800;color:var(--acl);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">🚀 Próximo nível</div>
-    <div style="font-size:20px;font-weight:800;line-height:1.25;margin-bottom:10px">Quer se profissionalizar de verdade?</div>
-    <p style="font-size:13px;line-height:1.65;color:var(--mut);margin-bottom:12px">Com as 20 receitas do Essencial você já consegue começar. Mas quem fatura de verdade com estética automotiva vende uma <b style="color:var(--txt)">linha completa</b> — do carro de passeio ao caminhão. É isso que a <b style="color:var(--txt)">Fórmula Auto Pro Completa</b> entrega:</p>
-    ${li('<b>80 fórmulas profissionais</b> — são 60 a mais do que no Essencial, para você ter catálogo para vender mais e para mais tipos de cliente')}
-    ${li('<b>Linha Pesada</b>: desengraxantes, limpa-baú, limpa-chassi, limpa-motor e mais — para caminhões, frotas e oficinas, que compram em volume')}
+  const naJ=!!(UPG&&UPG.naJanela);
+  const prazo=(UPG&&UPG.expiraEm)?new Date(UPG.expiraEm).toLocaleString('pt-BR',{weekday:'long',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'';
+  let preco='';
+  if(UPG){
+    preco=naJ
+      ?`<div style="margin-top:16px;padding:16px;background:var(--bg2);border:1.5px dashed var(--acc);border-radius:var(--r);text-align:center">
+        <div style="font-size:12px;color:var(--mut);line-height:1.5">Fórmula Auto Pro Completa <s>R$ 41,90</s> − seu crédito de R$ 14,90 do Essencial</div>
+        <div style="font-size:36px;font-weight:900;color:var(--acl);margin:6px 0 2px">${_brl(UPG.preco)}</div>
+        <div style="font-size:11px;color:var(--dim)">pagamento único · liberado no mesmo e-mail da sua compra</div>
+        <div style="margin-top:10px;font-size:12px;font-weight:700;color:#ff7b72">⏳ Seu crédito vale até ${prazo}</div></div>`
+      :`<div style="margin-top:16px;padding:16px;background:var(--bg2);border:1px solid var(--brd);border-radius:var(--r);text-align:center">
+        <div style="font-size:12px;color:var(--mut);line-height:1.5">O crédito de R$ 14,90 do Essencial expirou. A Fórmula Auto Pro Completa está no preço cheio:</div>
+        <div style="font-size:32px;font-weight:900;color:var(--acl);margin:6px 0 2px">${_brl(UPG.preco)}</div>
+        <div style="font-size:11px;color:var(--dim)">pagamento único · liberado no mesmo e-mail da sua compra</div></div>`;
+  }
+  const btn=UPG?`Quero a Completa por ${_brl(UPG.preco)} →`:'Ver a oferta da Completa →';
+  return`<div style="margin:22px 16px 0;padding:22px 18px;background:linear-gradient(160deg,var(--card),rgba(232,114,12,.12));border:2px solid var(--acc);border-radius:var(--rl)">
+    <div style="font-size:11px;font-weight:800;color:var(--acl);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">🚀 Próximo nível · oferta exclusiva para você</div>
+    <div style="font-size:21px;font-weight:800;line-height:1.25;margin-bottom:10px">Você tem 20 receitas. Quem vende de verdade tem a linha inteira.</div>
+    <p style="font-size:13px;line-height:1.65;color:var(--mut);margin-bottom:12px">Com o Essencial você começa. Mas o cliente que compra todo mês quer variedade: shampoo, cera, pretinho, higienização... e o dono de frota quer produto para caminhão. Com a Fórmula Auto Pro Completa você atende os dois.</p>
+    ${li('<b>80 fórmulas profissionais</b>: são <b>60 a mais</b> do que você já tem, para vender para mais tipos de cliente')}
+    ${li('<b>Linha Pesada (25 fórmulas)</b>: desengraxantes, limpa-baú, limpa-chassi, limpa-motor... para caminhões, frotas e oficinas, que compram em volume')}
     ${li('<b>Mais opções em todas as categorias</b>: limpeza externa, acabamento e brilho, limpeza interna e aromatização')}
-    ${li('<b>PDF completo do guia</b> para baixar e consultar quando quiser')}
+    ${li('<b>PDF completo</b> do guia para baixar e consultar quando quiser')}
     ${li('<b>4 ferramentas bônus</b>: Gerador de Rótulo, Precificação Automática, Calculadora de Lucro e Gerador de Ficha Técnica')}
-    <div style="margin-top:16px;padding:16px;background:var(--bg2);border:1px dashed var(--acc);border-radius:var(--r);text-align:center">
-      <div style="font-size:12px;color:var(--mut);line-height:1.5">Você já investiu R$ 14,90. Pague só a diferença:</div>
-      <div style="font-size:34px;font-weight:900;color:var(--acl);margin:6px 0 2px">R$ 27,00</div>
-      <div style="font-size:11px;color:var(--dim)">pagamento único · liberado no mesmo e-mail da sua compra</div>
-    </div>
-    <a href="${ckUrl('upg')}" target="_blank" data-action="track-checkout" data-produto="upg" style="display:block;margin-top:14px;background:linear-gradient(135deg,var(--acc),var(--acd));color:#fff;padding:16px;border-radius:12px;font-weight:800;font-size:15px;text-align:center;text-decoration:none">Quero a Completa por R$ 27,00 →</a>
-    <div style="margin-top:12px;font-size:10px;color:var(--dim);text-align:center;line-height:1.5">Material educativo. Não há garantia de resultados financeiros.</div>
+    ${preco}
+    <a href="${ckUrl('upg')}" target="_blank" data-action="track-checkout" data-produto="upg" style="display:block;margin-top:14px;background:linear-gradient(135deg,var(--acc),var(--acd));color:#fff;padding:16px;border-radius:12px;font-weight:800;font-size:15px;text-align:center;text-decoration:none">${btn}</a>
+    <div style="margin-top:12px;font-size:11px;color:var(--mut);text-align:center;line-height:1.5">🛡️ Garantia de 30 dias também no upgrade. Pix ou cartão, com seus dados já preenchidos.</div>
+    <div style="margin-top:8px;font-size:10px;color:var(--dim);text-align:center;line-height:1.5">Material educativo. Não há garantia de resultados financeiros.</div>
   </div>`;
 }
-
 
 // ── AUTO PRO ───────────────────────────────────────────────────────
 function rAuto(){
