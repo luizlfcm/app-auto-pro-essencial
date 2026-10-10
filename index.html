@@ -421,7 +421,7 @@ const CK='https://pagamento.luverisgroup.com.br/apess';
 const FULL_URL='https://formulaauto.luverisgroup.com.br/';
 const CHECKOUT_URLS={base:CK,limp:CK+'/limp',leg:CK+'/leg',upg:CK+'/upg'};
 function ckUrl(k){var u=CHECKOUT_URLS[k]||CK;try{var e=localStorage.getItem('fap_email');if(e)u+='?email='+encodeURIComponent(e);}catch(x){}return u;}
-const PDF_NAMES={limp:'50-Formulas-de-Limpeza.pdf',leg:'Guia-de-Legalizacao.pdf'};
+const PDF_NAMES={base:'Formula-Auto-Pro-Essencial-20-Receitas.pdf',limp:'50-Formulas-de-Limpeza.pdf',leg:'Guia-de-Legalizacao.pdf'};
 // Conteúdo pago NÃO vem no HTML: só é baixado da API depois de conferir o acesso do e-mail.
 const LOADED={};
 function _fapLoadLocked(){
@@ -622,7 +622,7 @@ function rAuto(){
       <div class="ck">${ckTxt}</div>
     </div>`;
   }).join('');
-  const dlWrap='';
+  const dlWrap=hasAccess?`<div class="dl-wrap"><button class="dl-btn" data-action="download-pdf" data-produto="base">📥 Baixar Guia Essencial (PDF)</button></div>`:'';
   return`
   <div class="sah">
     <div class="bb" data-action="go" data-v="home">‹</div>
