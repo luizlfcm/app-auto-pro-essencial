@@ -582,8 +582,29 @@ function _fapLoadUpg(){
   if(!email||!S.access.base||S.access.upg)return;
   fetch('https://pagamento.luverisgroup.com.br/api/upgrade?p=apess&email='+encodeURIComponent(email),{cache:'no-store'})
     .then(function(r){return r.json();})
-    .then(function(d){if(d&&d.preco){UPG=d;if(S.view==='home')render();}})
+    .then(function(d){if(d&&d.preco){UPG=d;if(S.view==='home')render();_fapUpgPop();}})
     .catch(function(){});
+}
+// ── Aviso da oferta do upgrade: aparece ao abrir o app, só dentro da janela de 72h (preço e prazo vêm do servidor) ──
+function _fapUpgPop(){
+  try{
+    if(!UPG||!UPG.naJanela||!UPG.expiraEm||S.access.upg||!S.access.base)return;
+    var ms=new Date(UPG.expiraEm).getTime()-Date.now();
+    if(!(ms>0))return;
+    try{if(sessionStorage.getItem('fap_upg_pop'))return;sessionStorage.setItem('fap_upg_pop','1');}catch(e){}
+    var h=Math.floor(ms/3600000),d=Math.floor(h/24),rest=d>0?(d+(d>1?' dias':' dia')+(h%24?' e '+(h%24)+'h':'')):(h>0?(h+'h '+Math.floor((ms%3600000)/60000)+'min'):(Math.max(1,Math.floor(ms/60000))+' min'));
+    var el=document.createElement('div');
+    el.id='fap-upg-pop';
+    el.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:9998;padding:0 12px calc(12px + env(safe-area-inset-bottom));pointer-events:none';
+    el.innerHTML='<div style="pointer-events:auto;max-width:520px;margin:0 auto;background:linear-gradient(160deg,var(--card),rgba(232,114,12,.18));border:2px solid var(--acc);border-radius:var(--rl);padding:16px;box-shadow:0 -6px 30px rgba(0,0,0,.55);position:relative">'
+      +'<button type="button" aria-label="Fechar" onclick="document.getElementById(\'fap-upg-pop\').remove()" style="position:absolute;top:6px;right:8px;background:none;border:0;color:var(--mut);font-size:22px;line-height:1;padding:6px;cursor:pointer">×</button>'
+      +'<div style="font-size:11px;font-weight:800;color:var(--acl);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">🎁 Oferta especial para você</div>'
+      +'<div style="font-size:15px;font-weight:800;line-height:1.35;margin:0 18px 6px 0">Fórmula Auto Pro Completa por '+_brl(UPG.preco)+' <span style="font-weight:500;color:var(--mut);text-decoration:line-through;font-size:13px">'+_brl(UPG.precoCheio)+'</span></div>'
+      +'<div style="font-size:12px;color:var(--mut);line-height:1.5;margin-bottom:12px">Seu crédito do Essencial vale só por mais <b style="color:var(--txt)">'+rest+'</b>. Depois, o preço volta ao normal.</div>'
+      +'<a href="'+ckUrl('upg')+'" target="_blank" data-action="track-checkout" data-produto="upg" onclick="var p=document.getElementById(\'fap-upg-pop\');if(p)p.remove()" style="display:block;text-align:center;background:linear-gradient(135deg,var(--acc),var(--acd));color:#fff;padding:13px;border-radius:12px;font-weight:800;font-size:14px;text-decoration:none">Ver a oferta →</a>'
+      +'</div>';
+    document.body.appendChild(el);
+  }catch(e){}
 }
 function _brl(v){return 'R$ '+Number(v).toFixed(2).replace('.',',');}
 function rUpsell(){
