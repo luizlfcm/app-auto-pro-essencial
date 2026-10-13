@@ -422,7 +422,7 @@ const PREVIEW_IDS=["f001", "f003", "f012", "f017", "f022"];
 const CK='https://pagamento.luverisgroup.com.br/apess';
 const FULL_URL='https://formulaauto.luverisgroup.com.br/';
 const CHECKOUT_URLS={base:CK,limp:CK+'/limp',leg:CK+'/leg',upg:CK+'/upg'};
-function ckUrl(k){var u=CHECKOUT_URLS[k]||CK;try{var e=localStorage.getItem('fap_email');if(e)u+='?email='+encodeURIComponent(e);}catch(x){}return u;}
+function ckUrl(k){var u=(CHECKOUT_URLS[k]||CK)+'?utm_source=app&utm_medium='+(k==='base'?'preview':'upsell')+'&utm_content='+encodeURIComponent(k);try{var e=localStorage.getItem('fap_email');if(e)u+='&email='+encodeURIComponent(e);}catch(x){}return u;}
 const PDF_NAMES={base:'Formula-Auto-Pro-Essencial-20-Receitas.pdf',limp:'50-Formulas-de-Limpeza.pdf',leg:'Guia-de-Legalizacao.pdf'};
 // Conteúdo pago NÃO vem no HTML: só é baixado da API depois de conferir o acesso do e-mail.
 const LOADED={};
