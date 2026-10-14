@@ -6,7 +6,7 @@ import { randomBytes, timingSafeEqual } from 'crypto';
 
 const PREFIXO = 'apess:';          // prefixo da chave no Upstash
 const TOKEN_PREFIXO = 'APE_';
-const PRODUTOS = ["base", "limp", "leg", "upg"];
+const PRODUTOS = ["base", "limp", "leg", "form", "upg"];
 const UPSTASH_DEFAULT_URL = 'https://brave-squid-149229.upstash.io';
 
 function agora() {
