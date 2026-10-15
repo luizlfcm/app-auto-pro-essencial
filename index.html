@@ -611,6 +611,7 @@ function _fapUpgPop(){
   }catch(e){}
 }
 function _brl(v){return 'R$ '+Number(v).toFixed(2).replace('.',',');}
+function previaUrl(){var e='';try{e=localStorage.getItem('fap_email')||'';}catch(x){}return FULL_URL+'?preview=1&from=ess&utm_source=app&utm_medium=previa&utm_content=essencial'+(e?'&email='+encodeURIComponent(e):'');}
 function rUpsell(){
   const A=S.access;
   if(!A.base)return'';
@@ -650,6 +651,7 @@ function rUpsell(){
     ${li('<b>4 ferramentas bônus</b>: Gerador de Rótulo, Precificação Automática, Calculadora de Lucro e Gerador de Ficha Técnica')}
     ${preco}
     <a href="${ckUrl('upg')}" target="_blank" data-action="track-checkout" data-produto="upg" style="display:block;margin-top:14px;background:linear-gradient(135deg,var(--acc),var(--acd));color:#fff;padding:16px;border-radius:12px;font-weight:800;font-size:15px;text-align:center;text-decoration:none">${btn}</a>
+    <a href="${previaUrl()}" target="_blank" data-action="track-previa" style="display:block;margin-top:10px;text-align:center;color:var(--acl);font-size:13px;font-weight:700;text-decoration:underline">👀 Ver por dentro da Completa (prévia grátis)</a>
     <div style="margin-top:12px;font-size:11px;color:var(--mut);text-align:center;line-height:1.5">🛡️ Garantia de 30 dias também no upgrade. Pix ou cartão, com seus dados já preenchidos.</div>
     <div style="margin-top:8px;font-size:10px;color:var(--dim);text-align:center;line-height:1.5">Material educativo. Não há garantia de resultados financeiros.</div>
   </div>`;
@@ -1058,6 +1060,7 @@ function handleClick(e){
       }
       break;
     }
+    case'track-previa': _fapPixel('ViewContent',{content_name:'Prévia do app completo (via Essencial)',content_category:'preview_from_essencial'});break;
     case'track-checkout': {
       _fapPixel('InitiateCheckout',{content_name:el.dataset.produto||''});
       try{localStorage.setItem('fap_buy_intent','1');}catch(e){}
