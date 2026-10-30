@@ -1,6 +1,12 @@
 // POST/GET /api/login?email=...  — confere no Upstash se o e-mail comprou o Essencial (chave "apess:<email>").
 const PREFIXO = 'apess:';
 
+function primeiroNome(n) {
+  const t = String(n || '').trim().split(/\s+/)[0] || '';
+  if (!/^[A-Za-zÀ-ÿ]{2,20}$/.test(t) || /^cliente$/i.test(t)) return '';
+  return t.charAt(0).toUpperCase() + t.slice(1).toLowerCase();
+}
+
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
   const email = (req.query.email || '').toString().toLowerCase().trim();
@@ -26,6 +32,7 @@ export default async function handler(req, res) {
     return res.json({
       success: true,
       permissions: { base: !!c.base, limp: !!c.limp, leg: !!c.leg, form: !!c.form, upg: !!c.upg },
+      nome: primeiroNome(c.nome),
     });
   } catch (e) {
     console.error('Login error:', e);
